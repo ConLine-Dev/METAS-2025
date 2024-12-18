@@ -1,27 +1,24 @@
 const urlHome = '/app/searchApp'
 const urlLogin = '/app/login'
 
-
-
 async function handleCredentialResponse(response) {
    const data = jwt_decode(response.credential);
    if(data.email_verified) {
 
       const system = await makeRequest('/api/users/ListUserByEmail', 'POST', {body:data.email})
-
+      console.log(system);
+      
       // Juntando os dois arrays
       const mergedData = Object.assign({}, system[0], data);
  
-      // const mergedData = [...data, system];
-      // console.log(mergedData)
       localStorage.setItem('StorageGoogle', JSON.stringify(mergedData));
-      window.location.href = urlHome
+      // window.location.href = urlHome // Redireciona para a pagina home
    }
 }
 window.onload = function () {
    // Inicia as configurações do login
    google.accounts.id.initialize({
-      client_id: "974028688166-64d8evsi6brv0mt5775kbsntg21d1goo.apps.googleusercontent.com",
+      client_id: "102535144641-anjbob4pgiro4ocq6v7ke68j5cghbdrd.apps.googleusercontent.com",
       callback: handleCredentialResponse
    });
 
@@ -30,21 +27,16 @@ window.onload = function () {
       document.getElementById("buttonDiv"),
       { theme: "outline", size: "large" }  // customization attributes
    );
-   google.accounts.id.prompt(); // also display the One Tap dialog
+   // google.accounts.id.prompt(); // also display the One Tap dialog
 
    // Verifica o localStorage para alterar a mensagem de boas vindas
    const StorageGoogleData = localStorage.getItem('StorageGoogle');
    const StorageGoogle = JSON.parse(StorageGoogleData);
-   if(!localStorage.getItem('StorageGoogle')) {
-      userLogin.textContent = `Bem vindo de volta!`
-   } else {
-      userLogin.textContent = `Bem vindo de volta ${StorageGoogle.name}`
-   }
 
    checkLoginExpiration();
 
    setInterval(async () => {
-       checkLoginExpiration()
+      checkLoginExpiration()
    }, 1000);
 }
 
@@ -52,7 +44,7 @@ window.onload = function () {
 function checkLoginExpiration() {
 
    if(localStorage.getItem('StorageGoogle')) {
-      window.location.href = urlHome
+      // window.location.href = urlHome
    }
 
 
