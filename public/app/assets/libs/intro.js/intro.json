@@ -1,0 +1,502 @@
+[
+  {
+    "title": "Bem-vindo!",
+    "intro": "Este tutorial guiará você pelo funcionamento do módulo do sistema, destacando suas principais funcionalidades."
+  },
+  {
+    "element": "#intro-bottom-new",
+    "title": "Novo",
+    "intro": "Aqui você pode criar sua nova senha de forma simples e rápida."
+  },
+  {
+    "element": "#table_control_password",
+    "title": "Lista de Senhas",
+    "intro": "Este campo exibe todas as senhas criadas. Clique em uma senha para ver mais detalhes.",
+    "position": "middle"
+  },
+  {
+    "element": "#table_control_password tr td:last-child",
+    "title": "Ações",
+    "intro": "Aqui você pode editar ou excluir suas senhas conforme necessário.",
+    "position": "right"
+  },
+  {
+    "element": "#intro-cards-offers",
+    "title": "Propostas / Processos",
+    "intro": "Aqui você verá as propostas aprovadas e pendentes, além dos processos em andamento e auditados deste ano."
+  },
+  {
+    "element": "#intro-cards-one",
+    "title": "Propostas Aprovadas",
+    "intro": "Esta seção mostra todas as propostas que foram aprovadas.",
+    "position": "right"
+  },
+  {
+    "element": "#intro-btn-filter",
+    "title": "Filtro",
+    "intro": "Você pode filtrar as informações por dias, semanas ou meses aqui e em outros cards.",
+    "position": "right"
+  },
+  {
+    "element": "#intro-cards-two",
+    "title": "Propostas Reprovadas",
+    "intro": "Aqui estão listadas todas as propostas que foram reprovadas.",
+    "position": "left"
+  },
+  {
+    "element": "#intro-cards-three",
+    "title": "Propostas Aguardando Aprovação",
+    "intro": "Esta seção mostra as propostas que estão aguardando aprovação.",
+    "position": "right"
+  },
+  {
+    "element": "#intro-cards-for",
+    "title": "Processos Auditados",
+    "intro": "Aqui estão listados todos os processos que já foram auditados.",
+    "position": "left"
+  },
+  {
+    "element": "#intro-total-finances",
+    "title": "Recebimento / Pagamento",
+    "intro": "Aqui você verá o total de recebimentos e pagamentos baixados e pendentes.",
+    "position": "left"
+  },
+  {
+    "element": "#intro-cards-list",
+    "title": "Recebimento / Pagamento",
+    "intro": "Esta seção lista todas as faturas relacionadas aos processos de recebimento e pagamento, sejam baixados ou pendentes. Clique em uma fatura para ver mais detalhes.",
+    "position": "left"
+  },
+  {
+    "element": "#intro-ocurrence",
+    "title": "Ocorrências e Não Conformidades por Unidade",
+    "intro": "Aqui você verá a quantidade de ocorrências e não conformidades por filial."
+  },
+  {
+    "element": "#intro-collaborators",
+    "title": "Colaboradores Ativos por Unidade",
+    "intro": "Este campo exibe a quantidade de colaboradores ativos em cada filial."
+  },
+  {
+    "element": "#intro-total-collaborators",
+    "title": "Total de Contratações e Colaboradores / Turnover Geral",
+    "intro": "Aqui você verá o total de contratações e colaboradores ativos. O índice de turnover representa a porcentagem total de rotatividade, incluindo admissões e desligamentos."
+  },
+  {
+    "element": "#intro-turnover-index",
+    "title": "Índice de Turnover por Mês",
+    "intro": "Aqui é exibido o total de admissões, demissões e o percentual de turnover por mês."
+  },
+  {
+    "element": "#intro-happy-birthday",
+    "title": "Próximos Aniversariantes",
+    "intro": "Aqui está a lista dos colaboradores que farão aniversário em breve.",
+    "position": "right"
+  },
+  {
+    "element": "#intro-time-office",
+    "title": "Tempo de Empresa",
+    "intro": "Aqui você verá uma lista com o tempo de empresa de cada colaborador.",
+    "position": "right"
+  },
+  {
+    "element": "#intro-collaborators-actives",
+    "title": "Colaboradores Ativos",
+    "intro": "Esta seção exibe a lista de colaboradores ativos na empresa.",
+    "position": "left"
+  },
+  {
+    "element": "#intro-administrative-expenses",
+    "title": "Despesas Administrativas",
+    "intro": "Aqui estão listadas todas as despesas administrativas."
+  },
+  {
+    "element": "#intro-ocurrence-per-unit",
+    "title": "Ocorrências Por Unidade",
+    "intro": "Este campo exibe a quantidade total de ocorrências abertas em cada filial."
+  },
+  {
+    "element": "#intro-ocurrence-per-month",
+    "title": "Ocorrências Abertas no Mês",
+    "intro": "Este campo exibe a quantidade de ocorrências abertas no mês atual."
+  },
+  {
+    "element": "#intro-ocurrence-time",
+    "title": "Tempo Médio de Resolução",
+    "intro": "Este campo mostra o tempo médio que leva para resolver as ocorrências registradas."
+  },
+  {
+    "element": "#intro-total-actions",
+    "title": "Ações Tomadas",
+    "intro": "Aqui você pode visualizar o total de ações que já foram realizadas."
+  },
+  {
+    "element": "#intro-actions-pending",
+    "title": "Ações Pendente",
+    "intro": "Este campo exibe o número total de ações que ainda estão pendentes."
+  },
+  {
+    "element": "#intro-ocurrence-progress-finished",
+    "title": "Ocorrências Andamento/Finalizadas",
+    "intro": "Aqui você pode visualizar o total e a porcentagem de ocorrências que estão em andamento ou já foram finalizadas."
+  },
+  {
+    "element": "#intro-ocurrence-per-type",
+    "title": "Ocorrências por Tipo",
+    "intro": "Aqui você pode visualizar o total e a porcentagem de ocorrências classificadas como Não Conformidades e Oportunidades de Melhoria."
+  },
+  {
+    "element": "#intro-ocurrence-pending",
+    "title": "Ocorrências Pendentes",
+    "intro": "Aqui você pode visualizar a lista completa de ocorrências que ainda estão pendentes."
+  },
+  {
+    "element": "#intro-actions-taken",
+    "title": "Ações Tomadas",
+    "intro": "Este campo exibe todas as ações que já foram tomadas."
+  },
+  {
+    "element": "#intro-filter-actions",
+    "title": "Filtro",
+    "intro": "Use este filtro para visualizar diferentes tipos de ações: todas, pendentes ou finalizadas."
+  },
+  {
+    "element": "#intro-new-ocurrence",
+    "title": "Nova ocorrência",
+    "intro": "Use este campo para registrar uma nova ocorrência."
+  },
+  {
+    "element": "#intro-all-occurrences",
+    "title": "Todas Ocorrências",
+    "intro": "Aqui você pode visualizar o histórico completo de todas as ocorrências registradas."
+  },
+  {
+    "element": "#intro-total-ocurrence-pending",
+    "title": "Ocorrências Pendentes",
+    "intro": "Aqui você pode visualizar a lista completa de ocorrências que ainda estão pendentes."
+  },
+  {
+    "element": "#intro-total-actions-taken",
+    "title": "Ações Tomadas",
+    "intro": "Este campo exibe todas as ações que já foram tomadas."
+  },
+  {
+    "element": "#intro-filter-total-actions",
+    "title": "Filtro",
+    "intro": "Use este filtro para visualizar diferentes tipos de ações: todas, pendentes ou finalizadas."
+  },
+  {
+    "element": "#intro-new-ocurrence-collaborators",
+    "title": "Nova ocorrência",
+    "intro": "Use este campo para registrar uma nova ocorrência."
+  },
+  {
+    "element": "#intro-all-occurrences-collaborators",
+    "title": "Todas Ocorrências",
+    "intro": "Aqui você pode visualizar o histórico completo de todas as ocorrências registradas."
+  },
+  {
+    "element": ".bottom-new-ticket",
+    "title": "Novo Chamado",
+    "intro": "Você pode abrir um novo chamado ou iniciar um novo projeto para a equipe de TI aqui."
+  },
+  {
+    "element": ".bottom-new-ticket-simplified",
+    "title": "Novo Chamado Simplificado",
+    "intro": "Abra um chamado rápido para problemas com equipamentos ou programas aqui."
+  },
+  {
+    "element": ".intro-search-user-ticket",
+    "title": "Pesquisar",
+    "intro": "Aqui você pode pesquisar os chamados que solicitou."
+  },
+  {
+    "element": ".ynex-kanban-board",
+    "title": "Lista de chamados solicitados",
+    "intro": "Aqui você verá todos os chamados que solicitou para o time de TI e o andamento de cada um."
+  },
+  {
+    "element": ".intro-filter-performance-product",
+    "title": "Filtros",
+    "intro": "Aqui você pode aplicar filtros para personalizar os dados exibidos na tela ao lado.<br><strong>Processo Courier:</strong> Selecione 'Sim' ou 'Não' para filtrar os dados de processos que utilizam o serviço de courier. <br><strong>Data Abertura Processo:</strong> Utilize o calendário para definir um período de abertura dos processos que deseja visualizar. <br><strong>Clientes:</strong> Selecione o cliente específico cujos dados você deseja filtrar. <br><strong>Situação Agenciamento:</strong> Escolha a situação atual do agenciamento (por exemplo, em andamento, faturado, finalizado). <br><strong>Modalidade:</strong> Selecione o tipo de modalidade do processo. <br><strong>Tipo de Carga:</strong> Escolha o tipo de carga que deseja visualizar na tela ao lado."
+  },
+  {
+    "element": ".intro-card-profit",
+    "title": "Lucro",
+    "intro": "Exibe o lucro total de processos por ano."
+  },
+  {
+    "element": ".intro-card-teus",
+    "title": "Teus",
+    "intro": "Exibe a quantidade total de TEUs por ano."
+  },
+  {
+    "element": ".intro-card-tons",
+    "title": "Toneladas",
+    "intro": "Mostra o total de toneladas por ano."
+  },
+  {
+    "element": ".intro-card-process",
+    "title": "Processos",
+    "intro": "Mostra o total de processos por ano."
+  },
+  {
+    "element": ".intro-card-profitProcess",
+    "title": "Lucro/Processo",
+    "intro": "Mostra o lucro por processo, calculado dividindo o lucro total pelo número de processos."
+  },
+  {
+    "element": ".intro-profitPerModal",
+    "title": "Lucro por Mês",
+    "intro": "Mostra o lucro total por mês. Ao passar o mouse sobre o gráfico, você pode ver: <br><strong>Receita:</strong> Valor recebido<br><strong>Despesas:</strong> Valor pago<br><strong>Lucro:</strong> Lucro mensal. "
+  },
+  {
+    "element": ".intro-profitTotalPerModal",
+    "title": "Lucro Total por Modal",
+    "intro": "Mostra a porcentagem do lucro anual de cada modal. Ao passar o mouse, você pode visualizar o lucro total de cada um dos modais."
+  },
+  {
+    "element": ".intro-profitPerProduct",
+    "title": "Lucro por Produto",
+    "intro": "Mostra a porcentagem do lucro anual por tipo de carga. Ao passar o mouse, você pode visualizar o lucro total de cada tipo de carga."
+  },
+  {
+    "element": ".intro-profitAveragePerModal",
+    "title": "Lucro Médio por Processo/Modal",
+    "intro": "Mostra a porcentagem anual do lucro por processo de cada modal, calculado dividindo o lucro total pelo número de processos."
+  },
+  {
+    "element": ".intro-commercial-note",
+    "title": "Notas setoriais",
+    "intro": "Aqui, você pode visualizar o nosso <strong>NPS (Net Promoter Score)</strong>, que coleta três notas: uma para o atendimento comercial, outra para o operacional e, por último, uma para o financeiro. Isso nos permite entender como os clientes percebem o atendimento em cada um dos três departamentos com os quais têm contato direto.<br>A média é calculada conforme a resposta satisfatória de cada cliente, onde:<br>• <strong>Notas entre 1-3:</strong> são consideradas como detratoras, clientes que veem a empresa de uma forma abaixo do esperado, servindo para ver pontos a melhorar.<br>• <strong>Notas 4:</strong> são notas de clientes passivos, um retorno de alguém que está satisfeito o suficiente para não comentar de forma negativa, porém não satisfeito o suficiente para recomendar como algo positivo.<br>• <strong>Notas 5:</strong> são entendidas como promotoras, votos de clientes que veem a empresa como algo positivo e recomendariam a novos possíveis clientes da empresa.<br>• <strong>Por último a média geral:</strong> ela é calculada com os resultados positivos e negativos das notas, fazemos a subtração entre eles onde é gerado a nota média geral."  
+  },
+  {
+    "element": ".intro-summary-answers",
+    "title": "Resumo das Respostas",
+    "intro": "Este gráfico mostra um resumo das respostas recebidas de seus clientes ao longo de um período. Cada métrica está representada de forma clara para facilitar a análise.<br> <strong>Resp. Recebidas:</strong> Esta métrica exibe o número total de respostas que foram recebidas dos clientes.<br> <strong>Cli. Respondentes:</strong> Mostra a quantidade de clientes que responderam às suas solicitações.<br> <strong>Resp. com Feedback:</strong> Indica quantas respostas incluem feedback adicional dos clientes.<br> <strong>Respondentes Ativos:</strong> Exibe o número de clientes ativos que participaram do processo de feedback.<br> <strong>Gráfico:</strong> O gráfico abaixo ilustra a quantidade de respostas por mês. Ao passar o cursor sobre um ponto específico, você pode ver o número exato de respostas recebidas naquele período."
+  },
+  {
+    "element": ".intro-card-noteCommercial",
+    "title": "Notas setoriais",
+    "intro": "Aqui, você pode visualizar o nosso <strong>NPS (Net Promoter Score)</strong>, que coleta três notas: uma para o atendimento comercial, outra para o operacional e, por último, uma para o financeiro. Isso nos permite entender como os clientes percebem o atendimento em cada um dos três departamentos com os quais têm contato direto.<br>A média é calculada conforme a resposta satisfatória de cada cliente, onde:<br>• <strong>Notas entre 1-3:</strong> são consideradas como detratoras, clientes que veem a empresa de uma forma abaixo do esperado, servindo para ver pontos a melhorar.<br>• <strong>Notas 4:</strong> são notas de clientes passivos, um retorno de alguém que está satisfeito o suficiente para não comentar de forma negativa, porém não satisfeito o suficiente para recomendar como algo positivo.<br>• <strong>Notas 5:</strong> são entendidas como promotoras, votos de clientes que veem a empresa como algo positivo e recomendariam a novos possíveis clientes da empresa.<br>• <strong>Por último a média geral:</strong> ela é calculada com os resultados positivos e negativos das notas, fazemos a subtração entre eles, onde é gerado a nota média geral."
+  },
+  {
+    "element": "#intro-listAnswers",
+    "title": "NPS - Respostas",
+    "intro": "Esta seção mostra um resumo detalhado das respostas dos clientes. Você pode visualizar o nome do cliente, a pessoa responsável pelo atendimento, e as notas atribuídas para as áreas Comercial, Operacional e Financeira. Além disso, é possível ver o status de satisfação do cliente (Satisfeito ou Insatisfeito) e ler os feedbacks fornecidos, que podem ser expandidos clicando na linha correspondente. A última coluna exibe a data em que o feedback foi registrado ou respondido."
+  },
+  {
+    "element": "#intro-list-customers",
+    "title": "Lista de Clientes",
+    "intro": "Ao clicar em <strong>'ACESSAR'</strong>, você será redirecionado para a janela 'NPS - Lista de Clientes', onde poderá visualizar todos os clientes da nossa empresa."
+  },
+  {
+    "element": ".intro-table-nps-clients",
+    "title": "NPS - Lista de Clientes",
+    "intro": "Esta seção exibe todos os clientes da nossa carteira. Você pode visualizar o nome do cliente, o vendedor responsável logo abaixo, o CNPJ ao lado, e um link para copiar e enviar diretamente ao cliente para que ele forneça seu feedback."
+  },
+  {
+    "element": ".intro-search-client",
+    "title": "Pesquisar",
+    "intro": "Aqui você pode pesquisar pelo nome do cliente ou por um vendedor específico."
+  },
+  {
+    "element": ".intro-card-invoiced",
+    "title": "Total Faturado",
+    "intro": "Este card exibe o valor total das faturas emitidas no ano atual. Ao clicar em 'Ver mais', será exibida a lista de todas as faturas relacionadas a este card."
+  },
+  {
+    "element": ".intro-card-anticipated",
+    "title": "Total de Antecipados",
+    "intro": "Este card exibe o valor total das faturas antecipadas no ano atual. Ao clicar em 'Ver mais', será exibida a lista de todas as faturas relacionadas a este card."
+  },
+  {
+    "element": ".intro-card-losers",
+    "title": "Faturas Vencidas",
+    "intro": "Este card exibe o valor total das faturas vencidas no ano atual. Ao clicar em 'Ver mais', será exibida a lista de todas as faturas relacionadas a este card."
+  },
+  {
+    "element": ".intro-card-totalReceived",
+    "title": "Total de Recebimentos",
+    "intro": "Este card exibe o valor total das faturas recebidas no ano atual. Ao clicar em 'Ver mais', será exibida a lista de todas as faturas relacionadas a este card."
+  },
+  {
+    "element": ".intro-card-totalPaid",
+    "title": "Total de Pagamentos",
+    "intro": "Este card exibe o valor total das faturas pagas no ano atual. Ao clicar em 'Ver mais', será exibida a lista de todas as faturas relacionadas a este card."
+  },
+  {
+    "element": ".intro-card-administrativeTotal",
+    "title": "Total Administrativo",
+    "intro": "Este card exibe o valor total das despesas administrativas no ano atual. Na parte inferior da tela, você pode visualizar a lista de despesas administrativas."
+  },
+  {
+    "element": ".intro-billingGraph",
+    "title": "Faturamento por mês",
+    "intro": "Aqui você pode visualizar tudo o que foi pago e recebido por mês.",
+    "position": "left"
+  },
+  {
+    "element": ".intro-invoiceList",
+    "title": "Lista de faturas",
+    "intro": "Aqui você pode visualizar todas as faturas do ano atual, incluindo o nome do cliente, número do processo, data e valores. Utilize o menu dos três pontos ao lado para filtrar pela situação da fatura que desejar."
+  },
+  {
+    "element": ".intro-card-administrativeExpenses",
+    "title": "Despesas Administrativas",
+    "intro": "Aqui você pode visualizar as despesas administrativas, incluindo no campo tipo: <strong>13° SALÁRIO, ÁGUA/ESGOTO, ALUGUEL, APLICAÇÕES FINANCEIRAS, APORTE FINANCEIRO, ASSISTÊNCIA MÉDICA E SOCIAL, AVISO PRÉVIO, BENS IMOBILIZADOS, BREAKBULK, BRINDES E DOAÇÕES, COMISSÕES, CONDOMÍNIO, CURSOS - TREINAMENTOS, DESLOCAMENTO/UBER/COMBUSTÍVEL, DESPESA DE CARTÃO DE CRÉDITO, DESPESAS DE SISTEMA, ENDOMARKETING, ESTACIONAMENTO, ESTÁGIO, EVENTOS, FARMÁCIA, FÉRIAS, FESTAS E CONGRAÇAMENTO, FGTS, HAPPY HOUR, HOSPEDAGEM, IMPOSTO, INFORMÁTICA, INGRESSOS/PALESTRAS, INSS, INTERNET, INVESTIMENTO IMOBILIÁRIO, IRRF SOBRE FOLHA, JUROS, LANCHES E REFEIÇÕES, LAZER, LIMPEZA/HIGIENIZAÇÃO, LOCAÇÃO DE VEÍCULO, LUZ, MARKETING EXTERNO, MATERIAL DE EXPEDIENTE, MEMBERSHIP, MENSALIDADES, MULTAS, PASSAGENS, PATROCÍNIOS, PEDÁGIO, PLANO DE SAÚDE, PLANO ODONTOLÓGICO, PRESENTE / BRINDE, PRO-LABORE, PUBLICIDADE/PROPAGANDA, REFORMA/MANUTENÇÃO/CONSERVAÇÃO DE IMÓVEIS, RESCISÕES, RETIRADA SÓCIO, SALÁRIOS, SEGURANÇA, SEGURO, SERVIÇOS ADVOCATÍCIOS, SERVIÇOS CONTÁBEIS, SERVIÇOS TERCEIRIZADOS/CONSULTORIA, TARIFAS BANCÁRIAS, TELEFONIA, VALE REFEIÇÃO, VALE TRANSPORTE, VARIAÇÕES CAMBIAIS, VIAGENS COMERCIAIS.</strong>"
+  },
+  {
+    "element": ".intro-btn-filter",
+    "title": "Filtro Ano Atual",
+    "intro": "Ao aplicar o filtro por uma data específica, os valores de <strong>Faturado</strong>, <strong>Faturamento Liberado</strong>, <strong>Vencidos</strong>, <strong>Total Recebido</strong> e <strong>Total Administrativo</strong> serão atualizados de acordo com o filtro selecionado. O filtro também será aplicado na seção 'Ver mais'. No gráfico, serão exibidos os valores mensais correspondentes à data escolhida. Ao lado, na lista de faturas, aparecerão apenas as faturas filtradas. Da mesma forma, na seção de despesas administrativas, serão mostradas apenas as despesas relacionadas ao filtro."
+  },
+  {
+    "element": "#intro_card_new",
+    "title": "Projetos Novos",
+    "intro": "Este card exibe a quantidade de Projetos/Chamados novos por mês."
+  },
+  {
+    "element": "#intro_card_analise",
+    "title": "Projetos Análise",
+    "intro": "Este card exibe a quantidade de Projetos/Chamados em análise por mês."
+  },
+  {
+    "element": "#intro_card_andamento",
+    "title": "Projetos Andamento",
+    "intro": "Este card exibe a quantidade de Projetos/Chamados em andamento por mês."
+  },
+  {
+    "element": "#intro_card_revisao",
+    "title": "Projetos Revisão",
+    "intro": "Este card exibe a quantidade de Projetos/Chamados em revisão por mês."
+  },
+  {
+    "element": "#intro_card_concluido",
+    "title": "Projetos Concluídos",
+    "intro": "Este card exibe a quantidade de Projetos/Chamados concluídos por mês."
+  },
+  {
+    "element": "#intro_card_totalProjects",
+    "title": "Total Projetos",
+    "intro": "Este card exibe a quantidade total de Projetos/Chamados por mês."
+  },
+  {
+    "element": ".intro_membersEquip",
+    "title": "Membros Equipe",
+    "intro": "Aqui você pode visualizar cada membro da equipe e a quantidade total de projetos/chamados que o membro possui, ao clicar no funcionário você poderá visualizar seu desempenho individualmente."
+  },
+  {
+    "element": ".intro_graphic_projects",
+    "title": "Análise de Projetos",
+    "intro": "No gráfico você visualizará uma análise por mês de quantos projetos/chamados foram concluídos e os que ainda estão pendentes."
+  },
+  {
+    "element": ".intro_task_pending",
+    "title": "Tarefas a Vencer",
+    "intro": "Aqui você pode visualizar os projetos/chamados que estão perto de vencer e ao clicar abrirá o chamado com as informações solicitantes."
+  },
+  {
+    "element": ".intro_last_messenger",
+    "title": "Últimas Mensagens",
+    "intro": "Aqui, você pode visualizar as últimas mensagens trocadas. Ao clicar no número correspondente ao ticket, o chamado será aberto com as informações do solicitante."
+  },
+  {
+    "element": ".intro_list_projects",
+    "title": "Resumo dos projetos",
+    "intro": "Aqui, você pode visualizar um resumo dos projetos e chamados, incluindo o número do ticket, título, responsável pelo chamado, solicitante, status e as datas correspondentes."
+  },
+  {
+    "element": ".intro_title_ticket",
+    "title": "Título",
+    "intro": "Aqui, você pode inserir um assunto breve do chamado solicitado."
+  },
+  {
+    "element": ".intro_category_ticket",
+    "title": "Categoria",
+    "intro": "Aqui, você pode selecionar o tipo de categoria para o seu chamado."
+  },
+  {
+    "element": ".intro_priority_ticket",
+    "title": "Prioridade",
+    "intro": "Aqui, você pode selecionar o tipo de prioridade para o seu chamado."
+  },
+  {
+    "element": ".intro_reponsible_ticket",
+    "title": "Responsável",
+    "intro": "Por padrão, você será selecionado como responsável. No entanto, se desejar abrir um chamado para outro colaborador, basta alterar o nome do responsável."
+  },
+  {
+    "element": ".intro_involved_ticket",
+    "title": "Envolvidos",
+    "intro": "Nesta seção, você pode adicionar os envolvidos no chamado solicitado."
+  },
+  {
+    "element": ".intro_description_ticket",
+    "title": "Descrição",
+    "intro": "Na descrição, agora você pode adicionar texto, incluir prints e personalizar o conteúdo alterando a cor, fonte, tamanho e outros estilos."
+  },
+  {
+    "element": "#intro_attachment_ticket",
+    "title": "Anexar Documentos",
+    "intro": "Nesta seção, você pode anexar qualquer tipo de arquivo, como imagens, planilhas Excel, PDFs e outros formatos."
+  },
+  {
+    "element": ".intro_events_calendar",
+    "title": "Eventos",
+    "intro": "Nesta seção, você pode adicionar novos eventos clicando no botão '+'. Ao selecionar um evento, os detalhes dos dias correspondentes ao evento escolhido serão exibidos logo abaixo."
+  },
+  {
+    "element": ".intro_event_day",
+    "title": "Eventos do dia",
+    "intro": "Aqui serão exibidos os eventos do dia, caso nenhum tipo de evento seja selecionado acima."
+  },
+  {
+    "element": ".intro_calendar",
+    "title": "Calendário",
+    "intro": "Nesta seção, você pode visualizar o calendário completo. Por padrão, o mês atual será exibido, e cada evento criado aparecerá na respectiva data. Após criar um evento, você pode editá-lo clicando na caixa do dia correspondente ou arrastá-lo para outra data, caso seja necessário alterar o dia."
+  },
+  {
+    "element": ".intro_internal_commments",
+    "title": "Comentários Internos",
+    "intro": "Os comentários internos servem como um canal para registrar informações ou observações relacionadas a um departamento. Por exemplo, é possível comentar sobre motivos específicos, como metas não alcançadas, ajudando a identificar e documentar as causas e os detalhes envolvidos."
+  },
+  {
+    "element": ".intro_tittle_comments",
+    "title": "Título",
+    "intro": "Insira um título curto e direto que resuma o tema principal do seu comentário."
+  },
+  {
+    "element": ".intro_date_comments",
+    "title": "Data",
+    "intro": "Informe a data em que o comentário está sendo escrito."
+  },
+  {
+    "element": ".intro_depts_comments",
+    "title": "Departamento",
+    "intro": "Selecione um departamento. Por padrão, serão exibidos apenas os departamentos aos quais você tem acesso."
+  },
+  {
+    "element": ".intro_modules_comments",
+    "title": "Módulo",
+    "intro": "Selecione um módulo para seu comentário ficar mais simplificado."
+  },
+  {
+    "element": ".intro_comment",
+    "title": "Escrever Comentário",
+    "intro": "Nesta seção, você pode escrever o comentário desejado para o departamento, detalhando passo a passo os motivos e as informações relevantes."
+  },
+  {
+    "element": ".intro_list_Accordion",
+    "title": "Histórico Comentário",
+    "intro": "Nesta seção, você pode acessar o histórico dos comentários registrados, com detalhes como data, departamento, título e o responsável pela criação do comentário."
+  },
+  {
+    "element": ".intro_btn_comments",
+    "title": "Enviar Comentário",
+    "intro": "E por fim, você pode enviar o comentário escrito para o departamento, clicando no botão 'Enviar Comentário'."
+  }
+  
+  
+
+]
