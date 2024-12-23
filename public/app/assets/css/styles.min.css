@@ -5728,7 +5728,7 @@
     background-color: var(--custom-white);
     box-shadow: 0 .125rem 0 rgba(10, 10, 10, .04);
     position: relative;
-    margin-block-end: 1.5rem;
+    margin-block-end: .5rem;
     width: 100%
 }
 
