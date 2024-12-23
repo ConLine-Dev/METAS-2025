@@ -86,12 +86,11 @@ const Users = {
     
         return result;
     },
-    ListUserByEmailAndPassword: async function(email, password){
+    ListUserByEmailAndPassword: async function(email){
  
         let result = await executeQuery(`SELECT
                                             u.id AS 'system_userID',
                                             u.email AS 'system_email',
-                                            u.email_password AS 'email_password',
                                             u.collaborator_id AS 'system_collaborator_id',
                                             c.id_headcargo AS 'system_id_headcargo',
                                             c.name AS 'system_username',
@@ -110,7 +109,6 @@ const Users = {
                                         ) d ON d.collaborator_id = c.id
                                         WHERE
                                             u.email = '${email}'
-                                            AND u.email_password = '${password}'
                                             AND c.resignation_date IS NULL
                                         ORDER BY
                                             c.name ASC`);

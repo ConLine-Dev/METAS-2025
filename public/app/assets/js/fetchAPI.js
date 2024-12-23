@@ -1,4 +1,6 @@
 async function makeRequest(url, method = 'GET', body = null) {
+  await checkLogin();
+
   const options = {
     method,
     headers: {}
@@ -43,5 +45,40 @@ async function makeRequest(url, method = 'GET', body = null) {
   } catch (error) {
     console.error(error);
     throw error;
+  }
+}
+
+// Verifica se o usuario está logado e retorna as informações do mesmo
+async function checkLogin() {
+  const localData = localStorage.getItem('StorageGoogle');
+
+  // Verifica se já está na página de login
+  const currentPath = window.location.pathname;
+  const isLoginPage = currentPath === '/app/login';
+
+  if (!localData) {
+    localStorage.removeItem('StorageGoogle');
+    // Redireciona somente se não estiver na página de login
+    if (!isLoginPage) {
+      window.location.href = `/app/login`;
+    }
+    return; // Interrompe a execução
+  }
+
+  try {
+    const parsedData = JSON.parse(localData);
+
+    // Verifica se o email é válido no sistema
+    const getAccess = await makeRequest('/api/users/ListUserByEmailAndPassword', 'POST', { email: parsedData.email });
+    return getAccess;
+  } catch (error) {
+    console.error('Erro ao verificar login:', error);
+    localStorage.removeItem('StorageGoogle');
+
+    // Redireciona somente se não estiver na página de login
+    if (!isLoginPage) {
+      window.location.href = `/app/login`;
+    }
+    return; // Interrompe a execução
   }
 }

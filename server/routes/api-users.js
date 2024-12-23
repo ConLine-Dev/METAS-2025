@@ -48,8 +48,6 @@ router.get('/getAllColab', async (req, res, next) => {
     }
 });
 
-
-
 router.post('/ListUserByEmail', async (req, res, next) => {
     const {body} = req.body;
     // console.log(body)
@@ -65,11 +63,11 @@ router.post('/ListUserByEmail', async (req, res, next) => {
 });
 
 router.post('/ListUserByEmailAndPassword', async (req, res, next) => {
-    const {email, password} = req.body;
+    const {email} = req.body;
     // console.log(body)
     try {
 
-        const result = await Users.ListUserByEmailAndPassword(email, password);
+        const result = await Users.ListUserByEmailAndPassword(email);
 
         res.status(200).json(result)
     } catch (error) {
@@ -89,9 +87,5 @@ router.get('/getAllDept', async (req, res, next) => {
         res.status(404).json('Erro')   
     }
 });
-
-
-
-
 
 module.exports = router;
