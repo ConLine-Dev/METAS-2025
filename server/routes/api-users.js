@@ -4,7 +4,7 @@ const path = require("path");
 const fs = require('fs');
 const { Users } = require('../controllers/users');
 
-router.get('/ListUserByDep/:id', async (req, res, next) => {
+router.post('/ListUserByDep/:id', async (req, res, next) => {
     try {
         const result = await Users.getUsersByDep(req.params.id);
 
@@ -15,7 +15,7 @@ router.get('/ListUserByDep/:id', async (req, res, next) => {
     }
 });
 
-router.get('/listAllUsers', async (req, res, next) => {
+router.post('/listAllUsers', async (req, res, next) => {
     try {
         const result = await Users.getAllUsers();
 
@@ -26,7 +26,7 @@ router.get('/listAllUsers', async (req, res, next) => {
     }
 });
 
-router.get('/listAllUsersActive', async (req, res, next) => {
+router.post('/listAllUsersActive', async (req, res, next) => {
     try {
         const result = await Users.listAllUsersActive();
 
@@ -37,7 +37,7 @@ router.get('/listAllUsersActive', async (req, res, next) => {
     }
 });
 
-router.get('/getAllColab', async (req, res, next) => {
+router.post('/getAllColab', async (req, res, next) => {
     try {
         const result = await Users.getAllColab();
 
@@ -49,11 +49,11 @@ router.get('/getAllColab', async (req, res, next) => {
 });
 
 router.post('/ListUserByEmail', async (req, res, next) => {
-    const {body} = req.body;
-    // console.log(body)
+    const {email} = req.body;
+    
     try {
 
-        const result = await Users.ListUserByEmail(body);
+        const result = await Users.ListUserByEmail(email);
 
         res.status(200).json(result)
     } catch (error) {
@@ -76,7 +76,7 @@ router.post('/ListUserByEmailAndPassword', async (req, res, next) => {
     }
 });
 
-router.get('/getAllDept', async (req, res, next) => {
+router.post('/getAllDept', async (req, res, next) => {
     try {
 
         const result = await Users.getAllDept();

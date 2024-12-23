@@ -60,7 +60,9 @@ const Users = {
         return result;
     },
     ListUserByEmail: async function(email){
- 
+        console.log(email);
+        
+        
         let result = await executeQuery(`SELECT
                             u.id AS 'system_userID',
                             u.email AS 'system_email',
