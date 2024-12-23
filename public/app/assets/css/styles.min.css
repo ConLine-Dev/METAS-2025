@@ -3,7 +3,7 @@
 
 :root {
     --body-bg-rgb: 240, 241, 247;
-    --primary-rgb: 132, 90, 223;
+    --primary-rgb: 249, 66, 58;
     --secondary-rgb: 35, 183, 229;
     --warning-rgb: 245, 184, 73;
     --info-rgb: 73, 182, 245;
@@ -11421,8 +11421,11 @@ button {
 
 @media (min-width:992px) {
     .footer {
-        padding-inline-start: 15rem
+        padding-inline-start: 0
     }
+    /* .footer {
+        padding-inline-start: 15rem
+    } */
 }
 
 .footer {
