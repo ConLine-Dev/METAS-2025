@@ -1,16 +1,17 @@
-async function makeRequest(url, method = 'GET', body = null) {
-  await checkLogin();
+async function makeRequest(url, method = 'GET', body = null, skipCheckLogin = false) {
+  if (!skipCheckLogin) {
+    await checkLogin();
+    alterPictureAndName()
+  }
 
   const options = {
     method,
     headers: {}
   };
 
-  // Obtendo os dados do usuário do localStorage
   const StorageGoogleData = localStorage.getItem('StorageGoogle');
   const StorageGoogle = StorageGoogleData ? JSON.parse(StorageGoogleData) : null;
 
-  // Se existir, adicione os dados do usuário no cabeçalho
   if (StorageGoogle) {
     options.headers['x-user'] = JSON.stringify(StorageGoogle);
   }
@@ -18,67 +19,72 @@ async function makeRequest(url, method = 'GET', body = null) {
   if (body) {
     if (method === 'GET') {
       console.warn('GET request does not support a request body.');
+    } else if (body instanceof FormData) {
+      options.body = body;
     } else {
-      // Se body for uma instância de FormData, não defina o Content-Type
-      if (body instanceof FormData) {
-        options.body = body;
-        // O fetch automaticamente definirá o Content-Type como multipart/form-data
-      } else {
-        options.headers['Content-Type'] = 'application/json';
-        options.body = JSON.stringify(body);
-      }
+      options.headers['Content-Type'] = 'application/json';
+      options.body = JSON.stringify(body);
     }
   }
 
   try {
     const response = await fetch(url, options);
 
-    // Verifica se a resposta é um status de sucesso (2xx)
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || 'Erro na solicitação ao servidor.');
     }
 
-    // Se a resposta for bem-sucedida, retorna os dados
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error);
+    console.error('Erro na requisição:', error);
     throw error;
   }
-}
+};
 
 // Verifica se o usuario está logado e retorna as informações do mesmo
 async function checkLogin() {
   const localData = localStorage.getItem('StorageGoogle');
 
-  // Verifica se já está na página de login
   const currentPath = window.location.pathname;
   const isLoginPage = currentPath === '/app/login';
 
+  // Permitir que a autenticação inicial configure o localStorage
   if (!localData) {
-    localStorage.removeItem('StorageGoogle');
-    // Redireciona somente se não estiver na página de login
     if (!isLoginPage) {
       window.location.href = `/app/login`;
     }
-    return; // Interrompe a execução
+    return false;
   }
 
   try {
     const parsedData = JSON.parse(localData);
 
-    // Verifica se o email é válido no sistema
-    const getAccess = await makeRequest('/api/users/ListUserByEmailAndPassword', 'POST', { email: parsedData.email });
-    return getAccess;
+    const getAccess = await makeRequest('/api/users/ListUserByEmailAndPassword','POST', { email: parsedData.email }, true /* Evita a chamada recursiva */);
+
+    if (getAccess && getAccess.length > 0) {
+      return true;
+    } else {
+      throw new Error('Usuário não encontrado.');
+    }
   } catch (error) {
     console.error('Erro ao verificar login:', error);
     localStorage.removeItem('StorageGoogle');
-
-    // Redireciona somente se não estiver na página de login
     if (!isLoginPage) {
       window.location.href = `/app/login`;
     }
-    return; // Interrompe a execução
+    return false;
   }
-}
+};
+
+function alterPictureAndName() {
+  const getLocal = localStorage.getItem('StorageGoogle');
+  const JSONLocal = JSON.parse(getLocal);
+
+  const userPhoto = document.getElementById('userPhoto');
+  userPhoto.setAttribute('src', `https://cdn.conlinebr.com.br/colaboradores/${JSONLocal.system_id_headcargo}`)  
+
+  const userName = document.getElementById('userName');
+  userName.textContent = `${JSONLocal.system_username} ${JSONLocal.system_familyName}`
+};
