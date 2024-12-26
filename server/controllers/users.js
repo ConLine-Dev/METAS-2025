@@ -1,4 +1,5 @@
 const { executeQuery } = require('../connect/mysql');
+const { executeQuerySQL } = require('../connect/sqlServer');
 
 const Users = {
     getUsersByDep: async function(id){
@@ -60,10 +61,8 @@ const Users = {
         return result;
     },
     ListUserByEmail: async function(email){
-        console.log(email);
         
-        
-        let result = await executeQuery(`SELECT
+        let resultSirius = await executeQuery(`SELECT
                             u.id AS 'system_userID',
                             u.email AS 'system_email',
                             u.collaborator_id AS 'system_collaborator_id',
@@ -71,6 +70,7 @@ const Users = {
                             c.name AS 'system_username',
                             c.image AS 'system_image',
                             c.family_name AS 'system_familyName',
+                            c.companie_id,
                             d.department_ids
                         FROM
                             users u
@@ -85,8 +85,8 @@ const Users = {
                             u.email = '${email}'
                         ORDER BY
                             c.name ASC`);
-    
-        return result;
+        
+        return resultSirius;
     },
     ListUserByEmailAndPassword: async function(email){
  
@@ -172,7 +172,6 @@ const Users = {
     }
 }
 
-
-    module.exports = {
-        Users,
-    };
+module.exports = {
+    Users,
+};
