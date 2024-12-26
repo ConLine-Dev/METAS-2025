@@ -1,23 +1,35 @@
 async function handleCredentialResponse(response) {
    try {
       const data = jwt_decode(response.credential);
-      console.log('Dados decodificados do Google:', data);
    
       if (data.email_verified) {
+         document.getElementById('loader2').classList.remove('d-none'); // remove o d-none para apresentar o loading
+
          const system = await makeRequest('/api/users/ListUserByEmail', 'POST', { email: data.email }, true /* Ignorar checkLogin para evitar conflitos */);
    
          const mergedData = Object.assign({}, system[0], data);
 
          // Salva os dados no localStorage
          localStorage.setItem('StorageGoogle', JSON.stringify(mergedData));
-   
+         
          // Redireciona diretamente sem chamar checkLogin
-         window.location.href = `/app/financeiro/ITJ`;
+         if (mergedData.companie_id === 1 /* ITJ */) {
+            window.location.href = `/app/financeiro/ITJ`;
+         } else if (mergedData.companie_id === 2 /* SP */) {
+            window.location.href = `/app/financeiro/SP`;
+         } else if (mergedData.companie_id === 4 /* ADM */) {
+            window.location.href = '/app/financeiro/ADM'
+         } else {
+            window.location.href = `/app/financeiro/ITJ`;
+         }
+
       } else {
-      console.error('Email não verificado.');
+         document.getElementById('loader2').classList.add('d-none'); // remove o d-none para apresentar o loading
+         console.error('Email não verificado.');
       }
    } catch (error) {
-     console.error('Erro ao processar a resposta de autenticação:', error);
+      document.getElementById('loader2').classList.add('d-none'); // remove o d-none para apresentar o loading
+      console.error('Erro ao processar a resposta de autenticação:', error);
    }
 };
 
