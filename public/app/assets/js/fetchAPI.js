@@ -1,21 +1,22 @@
 async function makeRequest(url, method = 'GET', body = null, skipCheckLogin = false) {
+  
   if (!skipCheckLogin) {
     await checkLogin();
     alterPictureAndName()
   }
-
+  
   const options = {
     method,
     headers: {}
   };
-
+  
   const StorageGoogleData = localStorage.getItem('StorageGoogle');
   const StorageGoogle = StorageGoogleData ? JSON.parse(StorageGoogleData) : null;
-
+  
   if (StorageGoogle) {
     options.headers['x-user'] = JSON.stringify(StorageGoogle);
   }
-
+  
   if (body) {
     if (method === 'GET') {
       console.warn('GET request does not support a request body.');
@@ -26,7 +27,7 @@ async function makeRequest(url, method = 'GET', body = null, skipCheckLogin = fa
       options.body = JSON.stringify(body);
     }
   }
-
+  
   try {
     const response = await fetch(url, options);
 
@@ -34,7 +35,7 @@ async function makeRequest(url, method = 'GET', body = null, skipCheckLogin = fa
       const errorData = await response.json();
       throw new Error(errorData.message || 'Erro na solicitação ao servidor.');
     }
-
+    
     const data = await response.json();
     return data;
   } catch (error) {
