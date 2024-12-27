@@ -1,11 +1,17 @@
 const months = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez",];
 
 // Soma os resultados dos meses que localizar no sistema
-function sumForMonth(data) {
+function sumForMonth(data, allowedMonths) {
    const sumForMonth = [];
  
    for (let i = 0; i < data.length; i++) {
       const item = data[i];
+ 
+      // Ignorar meses que não estão na lista de permitidos
+      if (!allowedMonths.includes(item.Mes)) {
+         continue;
+      }
+   
       const monthOfExistence = sumForMonth.find((mes) => mes.MES === item.Mes);
    
       if (monthOfExistence) {
@@ -18,6 +24,7 @@ function sumForMonth(data) {
       }
    }
  
+   // Garantir que os meses estejam na ordem correta
    sumForMonth.sort((a, b) => a.MES - b.MES);
    return sumForMonth;
 };
@@ -25,29 +32,29 @@ function sumForMonth(data) {
 let chartUpdate = null;
 // Cria o grafico mes a mes
 function graphicMonthForMonth(dataActualYear, dataGoal) {
-   const arrayValuesForMonth = sumForMonth(dataActualYear);
-
-   // Extrai apenas as METAS de cada mes
-   const goalForMonth = dataGoal.map(
-      (item) => item.value
-   );
-
+   // Extrai os meses permitidos do dataGoal
+   const allowedMonths = [...new Set(dataGoal.map((item) => item.month))];
+ 
+   // Atualiza os meses permitidos no sumForMonth
+   const arrayValuesForMonth = sumForMonth(dataActualYear, allowedMonths);
+ 
+   // Extrai apenas as METAS de cada mês
+   const goalForMonth = dataGoal
+      .filter((item) => allowedMonths.includes(item.month))
+      .map((item) => item.value);
+ 
    // Extrai apenas os valores de TOTAL_RECEBIMENTO
-   const valuesForMonth = arrayValuesForMonth.map(
-      (item) => item.TOTAL_RECEBIMENTO
-   );
-
+   const valuesForMonth = arrayValuesForMonth.map((item) => item.TOTAL_RECEBIMENTO);
+ 
+   // Gera as porcentagens
    const percentages = goalForMonth.map((goal, index) => {
-      const valueReceived = valuesForMonth[index];
-
+      const valueReceived = valuesForMonth[index] || 0;
       // Evita a divisão por zero
-      const porcentage = goal !== 0 ? (valueReceived / goal) * 100 : 0;
-      console.log(Number(porcentage.toFixed(2)));
-      
-      return Number(porcentage.toFixed(2));
+      const percentage = goal !== 0 ? (valueReceived / goal) * 100 : 0;
+      return Number(percentage.toFixed(2));
    });
-
-   var options = {
+ 
+   const options = {
       series: [
          {
             name: "Valores",
@@ -55,13 +62,12 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
             data: valuesForMonth,
          },
          {
-         name: "Meta",
-         type: "area",
-         data: goalForMonth,
+            name: "Meta",
+            type: "area",
+            data: goalForMonth,
          },
       ],
       colors: ["#F9423A", "#3F2021"],
-
       chart: {
          height: 500,
          type: "area",
@@ -70,19 +76,17 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
             show: false,
          },
       },
-
       stroke: {
          width: [0, 2],
          curve: "smooth",
+         dashArray: [0, 4],
       },
-
       plotOptions: {
          bar: {
             borderRadius: 7,
             columnWidth: "25%",
          },
       },
-
       fill: {
          type: ["solid", "gradient"],
          gradient: {
@@ -92,7 +96,6 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
             stops: [0, 100],
          },
       },
-
       dataLabels: {
          enabled: true,
          enabledOnSeries: [0],
@@ -102,13 +105,12 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
          },
          offsetY: -15,
          style: {
-         fontSize: "12px",
+            fontSize: "12px",
             colors: ["#F9423A"],
          },
       },
-
       xaxis: {
-         categories: months,
+         categories: allowedMonths.map((mes) => months[mes - 1]),
          position: "bottom",
          axisBorder: {
             show: false,
@@ -117,7 +119,7 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
             show: false,
          },
          crosshairs: {
-         fill: {
+            fill: {
             type: "gradient",
             gradient: {
                colorFrom: "#D8E3F0",
@@ -126,50 +128,30 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
                opacityFrom: 0.4,
                opacityTo: 0.5,
             },
-         },
+            },
          },
       },
-
       yaxis: [
          {
-         // seriesName: 'Ano Atual',
-         show: false,
-         // Define o intervalo do eixo Y para os valores arrecadados
-         min: 0, // Defina o mínimo como 0 ou um valor específico, se necessário
-         // max: Math.max(2000000)  // Ajuste o máximo para ser um pouco maior que o valor máximo dos valores arrecadados
+            show: false,
+            min: 0,
          },
-         // {
-         //    seriesName: 'Meta',
-         //    show: false,
-         //    min: 0, // Defina o mínimo do eixo Y para 0
-         //    // max: Math.max(2000000), // Defina o máximo do eixo Y para o maior valor em metas_mensais
-         // }
       ],
-
       tooltip: {
          enabled: false,
       },
    };
-
-   // Verifique se o gráfico já existe
+ 
    if (chartUpdate) {
-      // Atualize as porcentagens
-      options.dataLabels.formatter = function (val, opts) {
-         const percentage = percentage[opts.dataPointIndex];
-         return Math.max(percentage, 0) + "%";
-         // return percentage + "%";
-      };
-      // Se existir, atualize os dados e renderize novamente
       chartUpdate.updateOptions(options);
    } else {
-      // Se não existir, crie um novo gráfico
       chartUpdate = new ApexCharts(
          document.querySelector("#meta-mes-a-mes"),
          options
       );
       chartUpdate.render();
    }
-}
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
    await checkLogin(); // Verifica se o usuario esta logado/ativo
