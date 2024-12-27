@@ -67,7 +67,7 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
             data: goalForMonth,
          },
       ],
-      colors: ["#F9423A", "#3F2021"],
+      colors: ["#FF2429", "#3F2021"],
       chart: {
          height: 500,
          type: "area",
@@ -106,7 +106,7 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
          offsetY: -15,
          style: {
             fontSize: "12px",
-            colors: ["#F9423A"],
+            colors: ["#FF2429"],
          },
       },
       xaxis: {
@@ -120,14 +120,14 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
          },
          crosshairs: {
             fill: {
-            type: "gradient",
-            gradient: {
-               colorFrom: "#D8E3F0",
-               colorTo: "#BED1E6",
-               stops: [0, 100],
-               opacityFrom: 0.4,
-               opacityTo: 0.5,
-            },
+               type: "gradient",
+               gradient: {
+                  colorFrom: "#D8E3F0",
+                  colorTo: "#BED1E6",
+                  stops: [0, 100],
+                  opacityFrom: 0.4,
+                  opacityTo: 0.5,
+               },
             },
          },
       },
