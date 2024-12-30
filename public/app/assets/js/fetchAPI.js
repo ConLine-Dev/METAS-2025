@@ -2,7 +2,7 @@ async function makeRequest(url, method = 'GET', body = null, skipCheckLogin = fa
   
   if (!skipCheckLogin) {
     await checkLogin();
-    alterPictureAndName()
+    await alterPictureAndName()
   }
   
   const options = {
@@ -10,11 +10,11 @@ async function makeRequest(url, method = 'GET', body = null, skipCheckLogin = fa
     headers: {}
   };
   
-  const StorageGoogleData = localStorage.getItem('StorageGoogle');
-  const StorageGoogle = StorageGoogleData ? JSON.parse(StorageGoogleData) : null;
+  const hashData = localStorage.getItem('hash');
+  const hashStorage = hashData ? JSON.parse(hashData) : null;
   
-  if (StorageGoogle) {
-    options.headers['x-user'] = JSON.stringify(StorageGoogle);
+  if (hashStorage) {
+    options.headers['x-user'] = JSON.stringify(hashStorage);
   }
   
   if (body) {
@@ -46,7 +46,7 @@ async function makeRequest(url, method = 'GET', body = null, skipCheckLogin = fa
 
 // Verifica se o usuario está logado e retorna as informações do mesmo
 async function checkLogin() {
-  const localData = localStorage.getItem('StorageGoogle');
+  const localData = localStorage.getItem('hash');
 
   const currentPath = window.location.pathname;
   const isLoginPage = currentPath === '/app/login';
@@ -62,7 +62,7 @@ async function checkLogin() {
   try {
     const parsedData = JSON.parse(localData);
 
-    const getAccess = await makeRequest('/api/users/ListUserByEmailAndPassword','POST', { email: parsedData.email }, true /* Evita a chamada recursiva */);
+    const getAccess = await makeRequest('/api/users/listDataUser','POST', { hashCode: parsedData.hash_code }, true /* Evita a chamada recursiva */);
 
     if (getAccess && getAccess.length > 0) {
       return true;
@@ -71,7 +71,7 @@ async function checkLogin() {
     }
   } catch (error) {
     console.error('Erro ao verificar login:', error);
-    localStorage.removeItem('StorageGoogle');
+    localStorage.removeItem('hash');
     if (!isLoginPage) {
       window.location.href = `/app/login`;
     }
@@ -79,13 +79,15 @@ async function checkLogin() {
   }
 };
 
-function alterPictureAndName() {
-  const getLocal = localStorage.getItem('StorageGoogle');
+async function alterPictureAndName() {
+  const getLocal = localStorage.getItem('hash');
   const JSONLocal = JSON.parse(getLocal);
 
+  const getData = await makeRequest('/api/users/listDataUser','POST', { hashCode: JSONLocal.hash_code }, true /* Evita a chamada recursiva */);
+
   const userPhoto = document.getElementById('userPhoto');
-  userPhoto.setAttribute('src', `https://cdn.conlinebr.com.br/colaboradores/${JSONLocal.system_id_headcargo}`)  
+  userPhoto.setAttribute('src', `https://cdn.conlinebr.com.br/colaboradores/${getData[0].id_headcargo}`)  
 
   const userName = document.getElementById('userName');
-  userName.textContent = `${JSONLocal.system_username} ${JSONLocal.system_familyName}`
+  userName.textContent = `${getData[0].name} ${getData[0].family_name}`
 };
