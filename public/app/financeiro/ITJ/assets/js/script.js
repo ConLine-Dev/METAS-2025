@@ -156,11 +156,11 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
 document.addEventListener("DOMContentLoaded", async () => {
    await checkLogin(); // Verifica se o usuario esta logado/ativo
 
-   const getLocalStorage = localStorage.getItem('StorageGoogle');
+   const getLocalStorage = localStorage.getItem('hash');
    const dataLocal = JSON.parse(getLocalStorage);
 
-   const receiptActualYear = await makeRequest('/api/financial/listReceiptActualYear', 'POST', { idcompany: dataLocal.companie_id}); // Dados de recebimento do ano atual
-   const listGoalActualYear = await makeRequest('/api/financial/listGoalActualYear', 'POST', {companie_id: dataLocal.companie_id}); // Lista as metas do ano atual
+   const receiptActualYear = await makeRequest('/api/financial/listReceiptActualYear', 'POST', { hash: dataLocal.hash_code}); // Dados de recebimento do ano atual
+   const listGoalActualYear = await makeRequest('/api/financial/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
 
    graphicMonthForMonth(receiptActualYear, listGoalActualYear)
    
