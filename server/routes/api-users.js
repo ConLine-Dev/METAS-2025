@@ -18,6 +18,20 @@ router.post('/ListUserByEmail', async (req, res, next) => {
     }
 });
 
+router.post('/getCompanieId', async (req, res, next) => {
+    const {email} = req.body;
+    
+    try {
+
+        const result = await Users.getCompanieId(email);
+
+        res.status(200).json(result)
+    } catch (error) {
+
+        res.status(404).json('Erro')   
+    }
+});
+
 router.post('/listDataUser', async (req, res, next) => {
     const {hash} = req.body;
     
