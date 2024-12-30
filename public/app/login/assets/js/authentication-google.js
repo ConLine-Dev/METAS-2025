@@ -7,17 +7,18 @@ async function handleCredentialResponse(response) {
 
          const system = await makeRequest('/api/users/ListUserByEmail', 'POST', { email: data.email }, true /* Ignorar checkLogin para evitar conflitos */);
    
-         const mergedData = Object.assign({}, system[0], data);
+         const mergedData = Object.assign({}, system[0]);
 
          // Salva os dados no localStorage
-         localStorage.setItem('StorageGoogle', JSON.stringify(mergedData));
+         localStorage.setItem('hash', JSON.stringify(mergedData));
          
          // Redireciona diretamente sem chamar checkLogin
-         if (mergedData.companie_id === 1 /* ITJ */) {
+         // O Id da empresa é o mesmo do headcargo.
+         if (mergedData.companie_id_headcargo === 1 /* ITJ */) {
             window.location.href = `/app/financeiro/ITJ`;
-         } else if (mergedData.companie_id === 2 /* SP */) {
+         } else if (mergedData.companie_id_headcargo === 4 /* SP */) {
             window.location.href = `/app/financeiro/SP`;
-         } else if (mergedData.companie_id === 4 /* ADM */) {
+         } else if (mergedData.companie_id_headcargo === 7 /* ADM */) {
             window.location.href = '/app/financeiro/ADM'
          } else {
             window.location.href = `/app/financeiro/ITJ`;
