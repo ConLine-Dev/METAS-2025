@@ -21,18 +21,21 @@ const Users = {
         return result;
     },
 
-    listDataUser: async function(hashCode){
+    listDataUser: async function(hash){
 
         let result = await executeQuery(`SELECT
                             c.id_headcargo,
+                            com.companie_id_headcargo,
                             c.name,
                             c.family_name
                         FROM
                             users u
                         JOIN
                             collaborators c ON c.id = u.collaborator_id
+                        LEFT OUTER JOIN
+	                        companies com ON com.id = c.companie_id
                         WHERE
-                            c.hash_code = '${hashCode}'
+                            c.hash_code = '${hash}'
                         ORDER BY
                             c.name ASC`);
         

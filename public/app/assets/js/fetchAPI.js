@@ -62,7 +62,7 @@ async function checkLogin() {
   try {
     const parsedData = JSON.parse(localData);
 
-    const getAccess = await makeRequest('/api/users/listDataUser','POST', { hashCode: parsedData.hash_code }, true /* Evita a chamada recursiva */);
+    const getAccess = await makeRequest('/api/users/listDataUser','POST', { hash: parsedData.hash_code }, true /* Evita a chamada recursiva */);
 
     if (getAccess && getAccess.length > 0) {
       return true;
@@ -83,7 +83,7 @@ async function alterPictureAndName() {
   const getLocal = localStorage.getItem('hash');
   const JSONLocal = JSON.parse(getLocal);
 
-  const getData = await makeRequest('/api/users/listDataUser','POST', { hashCode: JSONLocal.hash_code }, true /* Evita a chamada recursiva */);
+  const getData = await makeRequest('/api/users/listDataUser','POST', { hash: JSONLocal.hash_code }, true /* Evita a chamada recursiva */);
 
   const userPhoto = document.getElementById('userPhoto');
   userPhoto.setAttribute('src', `https://cdn.conlinebr.com.br/colaboradores/${getData[0].id_headcargo}`)  

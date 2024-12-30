@@ -19,11 +19,11 @@ router.post('/ListUserByEmail', async (req, res, next) => {
 });
 
 router.post('/listDataUser', async (req, res, next) => {
-    const {hashCode} = req.body;
+    const {hash} = req.body;
     
     try {
 
-        const result = await Users.listDataUser(hashCode);
+        const result = await Users.listDataUser(hash);
 
         res.status(200).json(result)
     } catch (error) {
