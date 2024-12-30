@@ -4,50 +4,6 @@ const path = require("path");
 const fs = require('fs');
 const { Users } = require('../controllers/users');
 
-router.post('/ListUserByDep/:id', async (req, res, next) => {
-    try {
-        const result = await Users.getUsersByDep(req.params.id);
-
-        res.status(200).json(result)
-    } catch (error) {
-
-        res.status(404).json('Erro')   
-    }
-});
-
-router.post('/listAllUsers', async (req, res, next) => {
-    try {
-        const result = await Users.getAllUsers();
-
-        res.status(200).json(result)
-    } catch (error) {
-
-        res.status(404).json('Erro')   
-    }
-});
-
-router.post('/listAllUsersActive', async (req, res, next) => {
-    try {
-        const result = await Users.listAllUsersActive();
-
-        res.status(200).json(result)
-    } catch (error) {
-
-        res.status(404).json('Erro')   
-    }
-});
-
-router.post('/getAllColab', async (req, res, next) => {
-    try {
-        const result = await Users.getAllColab();
-
-        res.status(200).json(result)
-    } catch (error) {
-
-        res.status(404).json('Erro')   
-    }
-});
-
 router.post('/ListUserByEmail', async (req, res, next) => {
     const {email} = req.body;
     
@@ -62,12 +18,12 @@ router.post('/ListUserByEmail', async (req, res, next) => {
     }
 });
 
-router.post('/ListUserByEmailAndPassword', async (req, res, next) => {
-    const {email} = req.body;
-    // console.log(body)
+router.post('/listDataUser', async (req, res, next) => {
+    const {hashCode} = req.body;
+    
     try {
 
-        const result = await Users.ListUserByEmailAndPassword(email);
+        const result = await Users.listDataUser(hashCode);
 
         res.status(200).json(result)
     } catch (error) {
@@ -76,16 +32,5 @@ router.post('/ListUserByEmailAndPassword', async (req, res, next) => {
     }
 });
 
-router.post('/getAllDept', async (req, res, next) => {
-    try {
-
-        const result = await Users.getAllDept();
-
-        res.status(200).json(result)
-    } catch (error) {
-
-        res.status(404).json('Erro')   
-    }
-});
 
 module.exports = router;

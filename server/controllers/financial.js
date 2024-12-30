@@ -5,7 +5,24 @@ const actualYear = new Date().getFullYear();
 
 const Financial = {
    // Lista os recebimentos do ano atual
-   listReceiptActualYear: async function(idcompany){
+   listReceiptActualYear: async function(hash){
+      
+      let resultByUser = await executeQuery(`SELECT
+            c.id_headcargo,
+            com.companie_id_headcargo,
+            c.name,
+            c.family_name
+         FROM
+            users u
+         JOIN
+            collaborators c ON c.id = u.collaborator_id
+         LEFT OUTER JOIN
+            companies com ON com.id = c.companie_id
+         WHERE
+            c.hash_code = '${hash}'
+         ORDER BY
+            c.name ASC`
+      );
 
       let result = await executeQuerySQL(`SELECT
          Lhs.IdLogistica_House,
@@ -21,17 +38,33 @@ const Financial = {
          Lmo.IdMoeda = 110 -- BRL
          AND Lhs.Situacao_Agenciamento NOT IN (7 /* CANCELADO */)
          AND DATEPART(YEAR, Lhs.Data_Abertura_Processo) = ${actualYear}
-         AND Lhs.IdEmpresa_Sistema = ${idcompany}
+         AND Lhs.IdEmpresa_Sistema = ${resultByUser[0].companie_id_headcargo}
       `);
    
       return result;
    },
 
    // Lista as metas do ano atual
-   listGoalActualYear: async function(companie_id){
+   listGoalActualYear: async function(hash){
+      let resultByUser = await executeQuery(`SELECT
+            c.id_headcargo,
+            com.companie_id_headcargo,
+            c.name,
+            c.family_name
+         FROM
+            users u
+         JOIN
+            collaborators c ON c.id = u.collaborator_id
+         LEFT OUTER JOIN
+            companies com ON com.id = c.companie_id
+         WHERE
+            c.hash_code = '${hash}'
+         ORDER BY
+            c.name ASC`
+      );
 
       let result = await executeQuery(`SELECT
-            companie_id,
+            companie_id_headcargo,
             value,
             month,
             year
@@ -39,7 +72,7 @@ const Financial = {
             goal_financial
          WHERE
             year = ${actualYear}
-            AND companie_id = ${companie_id}
+            AND companie_id_headcargo = ${resultByUser[0].companie_id_headcargo}
       `);
    
       return result;

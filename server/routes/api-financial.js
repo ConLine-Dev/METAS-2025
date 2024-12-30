@@ -6,10 +6,10 @@ const { Financial } = require('../controllers/financial');
 
 // Lista os recebimentos do ano atual
 router.post('/listReceiptActualYear', async (req, res, next) => {
-   const { idcompany } = req.body;
+   const { hash } = req.body;
 
    try {
-      const result = await Financial.listReceiptActualYear(idcompany);
+      const result = await Financial.listReceiptActualYear(hash);
 
       res.status(200).json(result)
    } catch (error) {
@@ -20,10 +20,10 @@ router.post('/listReceiptActualYear', async (req, res, next) => {
 
 // Lista as metas do ano atual
 router.post('/listGoalActualYear', async (req, res, next) => {
-   const { companie_id } = req.body;
+   const { hash } = req.body;
 
    try {
-      const result = await Financial.listGoalActualYear(companie_id);
+      const result = await Financial.listGoalActualYear(hash);
 
       res.status(200).json(result)
    } catch (error) {
