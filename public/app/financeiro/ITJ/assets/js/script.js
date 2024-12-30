@@ -1,5 +1,14 @@
 const months = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez",];
 
+async function checkCompany(hash) {
+   const getCompanieId = await makeRequest('/api/users/listDataUser', 'POST', { hash: hash }); // Dados de recebimento do ano atual
+   const companie_id_headcargo = 1 /* ITJ */
+
+   if (getCompanieId[0].companie_id_headcargo !== companie_id_headcargo) {
+      window.location.href = `/app/erro/acesso-nao-autorizado`;
+   };
+};
+
 // Soma os resultados dos meses que localizar no sistema
 function sumForMonth(data, allowedMonths) {
    const sumForMonth = [];
@@ -158,6 +167,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
    const getLocalStorage = localStorage.getItem('hash');
    const dataLocal = JSON.parse(getLocalStorage);
+
+   await checkCompany(dataLocal.hash_code); // Verifica se o usuario esta na pagina referente a filial que ele tem acesso
 
    const receiptActualYear = await makeRequest('/api/financial/listReceiptActualYear', 'POST', { hash: dataLocal.hash_code}); // Dados de recebimento do ano atual
    const listGoalActualYear = await makeRequest('/api/financial/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
