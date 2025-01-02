@@ -289,7 +289,6 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
    }
 };
 
-
 document.addEventListener("DOMContentLoaded", async () => {
    await checkLogin(); // Verifica se o usuario esta logado/ativo
 
@@ -305,3 +304,19 @@ document.addEventListener("DOMContentLoaded", async () => {
    
    document.querySelector('#loader2').classList.add('d-none');
 });
+
+
+// Socket IO para ficar atualizando as informações na tela
+const socket = io();
+
+socket.on('newProcess', async function (msg) {
+   const getLocalStorage = localStorage.getItem('hash');
+   const dataLocal = JSON.parse(getLocalStorage);
+
+   await checkCompany(dataLocal.hash_code); // Verifica se o usuario esta na pagina referente a filial que ele tem acesso
+
+   const receiptActualYear = await makeRequest('/api/financial/listReceiptActualYear', 'POST', { hash: dataLocal.hash_code}); // Dados de recebimento do ano atual
+   const listGoalActualYear = await makeRequest('/api/financial/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
+
+   graphicMonthForMonth(receiptActualYear, listGoalActualYear)
+})
