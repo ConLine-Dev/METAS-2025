@@ -2,7 +2,12 @@ async function makeRequest(url, method = 'GET', body = null, skipCheckLogin = fa
   
   if (!skipCheckLogin) {
     await checkLogin();
-    await alterPictureAndName()
+
+    // Só executa a funcao de alterar imagem e nome se a pagina nao for a de login
+    const currentPath = window.location.pathname;
+    if (currentPath !== '/app/login/') {
+      await alterPictureAndName()
+    }
   }
   
   const options = {
