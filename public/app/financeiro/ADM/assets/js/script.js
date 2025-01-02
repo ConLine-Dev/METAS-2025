@@ -88,12 +88,15 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
    // Processar as metas
    const totalGoalsByCompanyId = groupGoalsByCompanyIdAndMonth(dataGoal);
 
-   // Criar constantes separadas para as empresas por IdEmpresa_Sistema
-   const valuesCompanyITJ = totalValuesByCompanyId[1] || [];
-   const valuesCompanySP = totalValuesByCompanyId[4] || [];
+   // Determinar o número total de meses permitidos
+   const numMonths = allowedMonths.length;
 
-   const goalsCompanyITJ = totalGoalsByCompanyId[1] || [];
-   const goalsCompanySP = totalGoalsByCompanyId[4] || [];
+   // Criar constantes separadas para as empresas por IdEmpresa_Sistema
+   const valuesCompanyITJ = totalValuesByCompanyId[1] || Array(numMonths).fill(0);
+   const valuesCompanySP = totalValuesByCompanyId[4] || Array(numMonths).fill(0);
+
+   const goalsCompanyITJ = totalGoalsByCompanyId[1] || Array(numMonths).fill(0);
+   const goalsCompanySP = totalGoalsByCompanyId[4] || Array(numMonths).fill(0);
 
    // Gráfico ITJ
    var optionsITJ = {
