@@ -25,7 +25,7 @@ const Financial = {
       );
 
       // Verifica se a empresa é ADM, se for retorna tudo da empresa 1 ITJ, 2 MVLOG e 4 SP
-      const filterCompanie = resultByUser[0].companie_id_headcargo === 7 ? `AND Lhs.IdEmpresa_Sistema IN (1 /*ITJ*/, 2 /*MVLOG*/, 4 /*SP*/)` : `AND Lhs.IdEmpresa_Sistema = ${resultByUser[0].companie_id_headcargo}`
+      const filterCompanie = resultByUser[0].companie_id_headcargo === 7 /* ADM */ || resultByUser[0].companie_id_headcargo === 8 /* TV */ ? `AND Lhs.IdEmpresa_Sistema IN (1 /*ITJ*/, 2 /*MVLOG*/, 4 /*SP*/)` : `AND Lhs.IdEmpresa_Sistema = ${resultByUser[0].companie_id_headcargo}`
 
       let result = await executeQuerySQL(`SELECT
             Lhs.IdLogistica_House,
@@ -73,7 +73,7 @@ const Financial = {
       );
 
       // Verifica se a empresa é ADM, se for retorna tudo da empresa 1 ITJ, 2 MVLOG e 4 SP
-      const filterCompanie = resultByUser[0].companie_id_headcargo === 7 ? `` : `AND companie_id_headcargo = ${resultByUser[0].companie_id_headcargo}`
+      const filterCompanie = resultByUser[0].companie_id_headcargo === 7 /* ADM */ || resultByUser[0].companie_id_headcargo === 8 /* TV */ ? `` : `AND companie_id_headcargo = ${resultByUser[0].companie_id_headcargo}`
 
       let result = await executeQuery(`SELECT
             companie_id_headcargo,
