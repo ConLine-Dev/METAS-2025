@@ -3,14 +3,6 @@ const http = require('http'); // Add this line
 const path = require('path');
 const socketIO = require('socket.io');
 
-
-// Import routes pages
-const listApp = require('./server/routes/app');
-const listApi = require('./server/routes/api');
-const ControllerSocket = require('./server/routes/socketIO');
-
-
-
 // Middlewares
 const app = express();
 app.use(express.json());
@@ -18,28 +10,27 @@ app.use(express.json());
 // Create an HTTP server using the Express app
 const server = http.createServer(app); 
 
-// Initialize Socket.io by passing the HTTP server instance
+// Import routes pages
+const WebSocket = require('./server/routes/socketIO');
+const listApp = require('./server/routes/app');
+const listApi = require('./server/routes/api');
+
+// Configuração do Socket.IO
 const io = socketIO(server);
+WebSocket.Init(io)
 
-// Statics
-app.use('/', express.static(path.join(__dirname, './public')))
+// Serve arquivos estáticos da pasta 'public'
+app.use(express.static(path.join(__dirname, './public')));
 
-// Routes
-// Pass the io instance to the setIO function
-const apiRoutes = listApi(io);
-app.use('/api', apiRoutes);
+// Rotas para APIs e aplicação
+app.use('/api', listApi());
 app.use('/app', listApp);
 
-app.use('/storageService/collaborators', express.static('storageService/administration/collaborators'));
-app.use('/storageService/tickets/files', express.static('storageService/ti/tickets/files'));
-app.use('/uploads', express.static('uploads'));
+// Redirecionar '/' para '/app/login'
+app.get('/', (req, res) => {
+  res.redirect('/app/login');
+});
 
-ControllerSocket(io)
-
-// Socket.io events handling
-// io.on('connection', (socket) => {
-
-// });
 
 // connection
 const port = process.env.PORT || 9437;
