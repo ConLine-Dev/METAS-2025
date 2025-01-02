@@ -35,7 +35,26 @@ async function handleCredentialResponse(response) {
    }
 };
 
-window.onload = function () {
+// Verifica se existe o hash no localstorage e redireciona para a tela correspondente a filial
+async function checkLocal () {
+   const getLocalStorage = localStorage.getItem('hash');
+   const dataLocal = JSON.parse(getLocalStorage);
+
+   const getCompanieId = await makeRequest('/api/users/listDataUser', 'POST', { hash: dataLocal.hash_code }); // Dados de recebimento do ano atual
+
+   if (getCompanieId[0].companie_id_headcargo === 7 /* ADM */) {
+      window.location.href = `/app/financeiro/ADM`;
+   } else if (getCompanieId[0].companie_id_headcargo === 1 /* ITJ */) {
+      window.location.href = `/app/financeiro/ITJ`;
+   } else if (getCompanieId[0].companie_id_headcargo === 4 /* SP */) {
+      window.location.href = `/app/financeiro/SP`;
+   };
+   
+}
+
+window.onload = async function () {
+   await checkLocal();
+
    // Inicia as configurações do login
    google.accounts.id.initialize({
       client_id: "102535144641-anjbob4pgiro4ocq6v7ke68j5cghbdrd.apps.googleusercontent.com",
