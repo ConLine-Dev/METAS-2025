@@ -34,7 +34,7 @@ const Financial = {
             Psa.Nome_Fantasia AS Empresa,
             DATEPART(MONTH, Lhs.Data_Abertura_Processo) AS Mes,
             DATEPART(YEAR, Lhs.Data_Abertura_Processo) AS Ano,
-            Lmo.Total_Recebimento
+            COALESCE(Lmo.Total_Recebimento, 0) AS Total_Recebimento
          FROM
             mov_Logistica_House Lhs
          JOIN
