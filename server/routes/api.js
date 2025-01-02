@@ -5,7 +5,7 @@ const Users = require('./api-users');
 const Financial = require('./api-financial');
 
 // Function to set io instance
-const setIO = (io) => {
+const setIO = () => {
   // Use as rotas do arquivo api-users.js
   router.use('/users', Users);
   // Use as rotas do arquivo api-financial.js

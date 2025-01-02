@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const path = require("path");
 const fs = require('fs');
-// const { executeQuery } = require('../connect/mysql');
-
 
 router.get('/:path(*)', async (req, res, next) => {
     const fullPath = req.params.path || '';
@@ -20,11 +18,9 @@ router.get('/:path(*)', async (req, res, next) => {
 
     let pagePath = path.join(__dirname, '../../', 'public/app', folderPath, `${fileName}.html`);
 
-
-    console.log(pagePath, fs.existsSync(pagePath))
+    console.log(pagePath, fs.existsSync(pagePath));
 
     if (fs.existsSync(pagePath)) {
-
         res.sendFile(pagePath);
     } else {
         res.status(404).send('Página não encontrada');
