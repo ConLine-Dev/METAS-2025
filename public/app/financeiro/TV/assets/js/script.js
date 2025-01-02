@@ -55,13 +55,8 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
          .reduce((sum, item) => sum + item.value, 0)
    );
 
-   console.log(goalForMonth, 'goalForMonthTV');
-   
-
    // Extrai apenas os valores de TOTAL_RECEBIMENTO
    const valuesForMonth = arrayValuesForMonth.map((item) => item.TOTAL_RECEBIMENTO);
-   console.log(valuesForMonth, 'valuesForMonthTV');
-   
 
    // Gera as porcentagens
    const percentages = goalForMonth.map((goal, index) => {
