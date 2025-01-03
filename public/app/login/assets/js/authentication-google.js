@@ -21,6 +21,8 @@ async function handleCredentialResponse(response) {
             window.location.href = `/app/financeiro/SP`;
          } else if (getCompanieId[0].companie_id_headcargo === 7 /* ADM */) {
             window.location.href = '/app/financeiro/ADM'
+         } else if (getCompanieId[0].companie_id_headcargo === 8 /* TV */) {
+            window.location.href = '/app/financeiro/ADM'
          } else {
             window.location.href = `/app/financeiro/ITJ`;
          }
@@ -36,11 +38,8 @@ async function handleCredentialResponse(response) {
 };
 
 // Verifica se existe o hash no localstorage e redireciona para a tela correspondente a filial
-async function checkLocal () {
-   const getLocalStorage = localStorage.getItem('hash');
-   const dataLocal = JSON.parse(getLocalStorage);
-
-   const getCompanieId = await makeRequest('/api/users/listDataUser', 'POST', { hash: dataLocal.hash_code }); // Dados de recebimento do ano atual
+async function checkLocal (hash) {
+   const getCompanieId = await makeRequest('/api/users/listDataUser', 'POST', { hash: hash }); // Dados de recebimento do ano atual
 
    if (getCompanieId[0].companie_id_headcargo === 7 /* ADM */) {
       window.location.href = `/app/financeiro/ADM`;
@@ -48,12 +47,18 @@ async function checkLocal () {
       window.location.href = `/app/financeiro/ITJ`;
    } else if (getCompanieId[0].companie_id_headcargo === 4 /* SP */) {
       window.location.href = `/app/financeiro/SP`;
+   } else if (getCompanieId[0].companie_id_headcargo === 8 /* TV */) {
+      window.location.href = `/app/financeiro/TV`;
    };
-   
 }
 
 window.onload = async function () {
-   await checkLocal();
+   if (localStorage.getItem('hash')) {
+      const getLocalStorage = localStorage.getItem('hash');
+      const dataLocal = JSON.parse(getLocalStorage);
+   
+      await checkLocal(dataLocal.hash_code);
+   }
 
    // Inicia as configurações do login
    google.accounts.id.initialize({
