@@ -84,6 +84,11 @@ async function checkLogin() {
   }
 };
 
+// Logout
+function logout(element) {
+  localStorage.removeItem('hash');
+}
+
 async function alterPictureAndName() {
   const getLocal = localStorage.getItem('hash');
   const JSONLocal = JSON.parse(getLocal);
