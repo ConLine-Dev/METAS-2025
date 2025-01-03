@@ -22,7 +22,7 @@ async function handleCredentialResponse(response) {
          } else if (getCompanieId[0].companie_id_headcargo === 7 /* ADM */) {
             window.location.href = '/app/financeiro/ADM'
          } else if (getCompanieId[0].companie_id_headcargo === 8 /* TV */) {
-            window.location.href = '/app/financeiro/ADM'
+            window.location.href = '/app/financeiro/TV'
          } else {
             window.location.href = `/app/financeiro/ITJ`;
          }
