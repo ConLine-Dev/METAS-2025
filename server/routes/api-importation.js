@@ -5,11 +5,11 @@ const fs = require('fs');
 const { Importation } = require('../controllers/importation');
 
 // Lista os recebimentos do ano atual
-router.post('/listReceiptActualYear', async (req, res, next) => {
+router.post('/listAllProcesses', async (req, res, next) => {
    const { hash } = req.body;
 
    try {
-      const result = await Importation.listReceiptActualYear(hash);
+      const result = await Importation.listAllProcesses(hash);
 
       res.status(200).json(result)
    } catch (error) {
