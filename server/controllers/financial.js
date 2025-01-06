@@ -20,6 +20,7 @@ const Financial = {
             companies com ON com.id = c.companie_id
          WHERE
             c.hash_code = '${hash}'
+            AND c.resignation_date IS NULL
          ORDER BY
             c.name ASC`
       );
@@ -68,6 +69,7 @@ const Financial = {
             companies com ON com.id = c.companie_id
          WHERE
             c.hash_code = '${hash}'
+            AND c.resignation_date IS NULL
          ORDER BY
             c.name ASC`
       );
