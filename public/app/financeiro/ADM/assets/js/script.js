@@ -294,10 +294,8 @@ function graphicMonthForMonth(dataActualYear, dataGoal) {
 
 document.addEventListener("DOMContentLoaded", async () => {
    await checkLogin(); // Verifica se o usuario esta logado/ativo
-
    const getLocalStorage = localStorage.getItem('hash');
    const dataLocal = JSON.parse(getLocalStorage);
-
    await checkCompany(dataLocal.hash_code); // Verifica se o usuario esta na pagina referente a filial que ele tem acesso
 
    const receiptActualYear = await makeRequest('/api/financial/listReceiptActualYear', 'POST', { hash: dataLocal.hash_code}); // Dados de recebimento do ano atual
