@@ -39,6 +39,8 @@ const Financial = {
          FROM
             mov_Logistica_House Lhs
          JOIN
+            mov_Logistica_Master Lms ON Lms.IdLogistica_Master = Lhs.IdLogistica_Master
+         JOIN
             mov_Logistica_Moeda Lmo ON Lmo.IdLogistica_House = Lhs.IdLogistica_House
          LEFT OUTER JOIN
             cad_Empresa Emp ON Emp.IdEmpresa_Sistema = Lhs.IdEmpresa_Sistema
@@ -47,6 +49,7 @@ const Financial = {
          WHERE
             Lmo.IdMoeda = 110 -- BRL
             AND Lhs.Situacao_Agenciamento NOT IN (7 /* CANCELADO */)
+            AND Lms.Situacao_Embarque NOT IN (4 /* CANCELADO */)
             AND DATEPART(YEAR, Lhs.Data_Abertura_Processo) = ${actualYear}
             ${filterCompanie}
       `);
