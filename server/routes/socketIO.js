@@ -20,12 +20,12 @@ const WebSocket = {
           WebSocket.lastId = id; // O lastId será atualizado com o novo valor consultado
           io.emit('newProcess');
         }
-      }, 120000); /* 2 minutos */
+      }, 1000); /* 2 minutos */
     })
   },
 
   listLastProcess: async function() {
-    const result = await executeQuerySQL(`SELECT TOP 1 IdLogistica_House FROM mov_Logistica_House ORDER BY IdLogistica_House DESC`);
+    const result = await executeQuerySQL(`SELECT TOP 1 IdLogistica_House FROM mov_Logistica_House WHERE Situacao_Agenciamento NOT IN (7 /*CANCELADO*/) AND Numero_Processo NOT LIKE '%test%' ORDER BY IdLogistica_House DESC`);
     return result[0];
   }
 }
