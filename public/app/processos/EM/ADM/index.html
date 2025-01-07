@@ -1,0 +1,264 @@
+<html lang="pt-br" dir="ltr" data-nav-layout="horizontal" data-theme-mode="light" data-header-styles="light" data-menu-styles="light" data-toggled="close" loader="disable" data-nav-style="menu-hover">
+
+<head>
+   <!-- Meta Data -->
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Conline - Meta Comercial ADM</title>
+   <meta name="Description" content="Metas Conline">
+   <!-- Favicon -->
+   <link rel="icon" href="../../../assets/images/brand-logos/favicon.png" type="image/x-icon">
+   <!-- Bootstrap Css -->
+   <link id="style" href="../../../assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Style Css -->
+   <link href="../../../assets/css/styles.min.css" rel="stylesheet">
+   <!-- Icons Css -->
+   <link href="../../../assets/css/icons.css" rel="stylesheet">
+   <!-- Estilos da pagina -->
+   <link rel="stylesheet" href="assets/css/styles.css">
+   <!-- Neste main tem a função THE FETCH que consulta no banco de dados -->
+   <script src="../../../assets/js/main.js"></script>
+</head>
+<body>
+
+   <!-- LOADER -->
+   <div id="loader2">
+      <img src="../../../assets/images/media/loader.svg" alt="">
+   </div>
+
+   <!-- header -->
+   <header class="app-header">
+      <div class="main-header-container container-fluid">
+
+         <div class="header-content-left">
+            <!-- LOGO -->
+            <div class="header-element">
+               <div class="horizontal-logo">
+                  <a href="#" class="header-logo" style="cursor: default;">
+                     <img src="../../../assets/images/brand-logos/logo.png" alt="logo" class="desktop-logo"
+                        style="height: 1.5rem">
+                     <img src="../../../assets/images/brand-logos/logo-mycon.png" alt="logo" class="toggle-logo">
+                     <img src="../../../assets/images/brand-logos/logo-mycon-light.png" alt="logo" class="toggle-dark">
+                     <img src="../../../assets/images/brand-logos/logo-light.png" alt="logo" class="desktop-dark"
+                        style="height: 1.5rem">
+                  </a>
+               </div>
+            </div>
+            <!-- LOGO -->
+         </div>
+
+         <div class="header-content-right">
+            <!-- USUARIO LOGADO -->
+            <div class="header-element">
+               <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile"
+                  data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                  <div class="d-flex align-items-center">
+                     <div class="me-sm-2 me-0">
+                        <img src="" alt="img" width="32" height="32"class="rounded-circle" id="userPhoto">
+                     </div>
+                     <div class="d-sm-block d-none">
+                        <p class="fw-semibold mb-0 lh-1" id="userName">Nome Usuário</p>
+                     </div>
+                  </div>
+               </a> <!-- End::header-link|dropdown-toggle -->
+               <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
+                  aria-labelledby="mainHeaderProfile">
+                  <li>
+                     <a class="dropdown-item d-flex" onclick="logout(this)" href="/" style="cursor: pointer;">
+                        <i class="ti ti-logout fs-18 me-2 op-7"></i>
+                        Sair
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <!-- /USUARIO LOGADO -->
+         </div>
+         
+      </div>
+   </header>
+   <!-- /header -->
+
+   <!-- sidebar -->
+   <aside class="app-sidebar sticky sticky-pin" id="sidebar">
+      <!-- Start::main-sidebar -->
+      <div class="main-sidebar" id="sidebar-scroll" data-simplebar="init">
+         
+         <div class="simplebar-wrapper" style="margin: 0px;">
+            <div class="simplebar-height-auto-observer-wrapper">
+               <div class="simplebar-height-auto-observer"></div>
+            </div>
+
+            <div class="simplebar-mask">
+               <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                  <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content"
+                     style="height: 100%; overflow: hidden;">
+                     <div class="simplebar-content" style="padding: 8px 0px 80px;"> <!-- Start::nav -->
+                        <nav class="main-menu-container nav nav-pills flex-column active">
+                           <ul class="main-menu" style="display: block; margin-left: 0; margin-right: 0px;"> 
+
+                              <li class="slide has-sub"> 
+                                 <a href="/app/financeiro/ADM" class="side-menu__item"> 
+                                    <i class="bi bi-person side-menu__icon"></i> 
+                                    <span class="side-menu__label" style="margin-right: 14px;">Meta financeira - ADM</span> 
+                                 </a>
+                              </li>
+
+                              <li class="slide has-sub"> 
+                                 <a href="/app/processos/IM/ADM/" class="side-menu__item"> 
+                                    <i class="bi bi-person side-menu__icon"></i> 
+                                    <span class="side-menu__label" style="margin-right: 14px;">Meta Comercial IM - ADM</span> 
+                                 </a>
+                              </li>
+                              
+                              <li class="slide has-sub"> 
+                                 <a href="/app/processos/EM/ADM" class="side-menu__item active"> 
+                                    <i class="bi bi-person side-menu__icon"></i> 
+                                    <span class="side-menu__label" style="margin-right: 14px;">Meta Comercial EM - ADM</span> 
+                                 </a>
+                              </li>
+                              
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+         <div class="simplebar-placeholder" style="width: auto; height: 169px;"></div>
+      </div>
+   </div>
+   <!-- End::main-sidebar -->
+   </aside>
+   <!-- /sidebar -->
+
+   <!-- Dashboard -->
+   <div class="main-content app-content" style="position: relative; display: flex; align-items: center;">
+      <div class="container-fluid">
+        
+         <div class="row">
+            <div class="col-xl-4"></div>
+               <!-- Grafico Mensal -->
+                  <div class="row">
+                     <div class="col-xl-12">
+                        <div class="row cards-processos">
+
+                           <div class="col-xl col-lg col-md col-sm-12">
+                              <div class="card custom-card overflow-hidden" style="height: 13vh;">
+                                 <div class="card-body mb-3">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                       <div>
+                                          <h6 class="fw-semibold mb-3">EM LCL - PROCESSOS - ITJ</h6> 
+                                          <span class="fs-25" id="EM-LCL-ANUAL-ITJ" style="color: #F9423A">0</span>
+                                          <span class="fs-25">/</span>
+                                          <span class="fs-25" id="EM-LCL-META-ANUAL-ITJ" style="color: #3F2021">0</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="card custom-card intro-mensal-processos" style="height: 68vh">
+                                 <div class="card-body" style="padding: 0; padding-right: 15px; margin-top: -18px;">
+                                    <div id="EM-LCL" style="min-height: 475px;"></div>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="col-xl col-lg col-md col-sm-12">
+                              <div class="card custom-card overflow-hidden" style="height: 13vh;">
+                                 <div class="card-body mb-3">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                       <div>
+                                          <h6 class="fw-semibold mb-3">EM TEUS - ITJ</h6> 
+                                          <span class="fs-25" id="EM-TEUS-ANUAL-ITJ" style="color: #F9423A">0</span>
+                                          <span class="fs-25">/</span>
+                                          <span class="fs-25" id="EM-TEUS-META-ANUAL-ITJ" style="color: #3F2021">0</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="card custom-card" style="height: 68vh">
+                                 <div class="card-body" style="padding: 0; padding-right: 15px; margin-top: -18px;">
+                                    <div id="EM-FCL" style="min-height: 475px;"></div>
+                                 </div>
+                              </div>
+                           </div>
+            
+                           <div class="col-xl col-lg col-md col-sm-12">
+                              <div class="card custom-card overflow-hidden" style="height: 13vh;">
+                                 <div class="card-body mb-3">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                       <div>
+                                          <h6 class="fw-semibold mb-3">EA NORMAL - PROCESSOS - ITJ</h6> 
+                                          <span class="fs-25" id="EA-NORMAL-ANUAL-ITJ" style="color: #F9423A">0</span>
+                                          <span class="fs-25">/</span>
+                                          <span class="fs-25" id="EA-NORMAL-META-ANUAL-ITJ" style="color: #3F2021">0</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="card custom-card" style="height: 68vh">
+                                 <div class="card-body" style="padding: 0; padding-right: 15px; margin-top: -18px;">
+                                    <div id="EA-NORMAL" style="min-height: 475px;"></div>
+                                 </div>
+                              </div>
+                           </div>
+            
+                           <div class="col-xl col-lg col-md col-sm-12">
+                              <div class="card custom-card overflow-hidden" style="height: 13vh;">
+                                 <div class="card-body mb-3">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                       <div>
+                                          <h6 class="fw-semibold mb-3">EA COURIER - PROCESSOS - ITJ</h6> 
+                                          <span class="fs-25" id="EA-COURIER-ANUAL-ITJ" style="color: #F9423A">0</span>
+                                          <span class="fs-25">/</span>
+                                          <span class="fs-25" id="EA-COURIER-META-ANUAL-ITJ" style="color: #3F2021">0</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="card custom-card" style="height: 68vh">
+                                 <div class="card-body" style="padding: 0; padding-right: 15px; margin-top: -18px;">
+                                    <div id="EA-COURIER" style="min-height: 475px;"></div>
+                                 </div>
+                              </div>
+                           </div>
+
+                        </div>
+                     </div>
+                  </div>
+               <!-- Fim Grafico Mensal -->
+            </div>
+      
+         </div>
+   </div>
+   <!-- Dashboard -->
+
+   <!-- Footer Start -->
+   <footer class="footer mt-auto py-3 bg-white text-center">
+      <div class="container">
+         <span class="text-muted"> Copyright © <span id="year"><!-- Ano Atual --></span>
+            <a href="http://conlinebr.com.br" target="_blank" class="text-dark fw-semibold">Conline</a>.
+            <span class="bi bi-heart-fill text-danger"></span>
+            Todos os direitos reservado
+         </span>
+      </div>
+   </footer>
+   <!-- Footer End -->
+
+   <div id="responsive-overlay"></div>
+
+   <!-- Neste main tem a função THE FETCH que consulta no banco de dados -->
+   <script src="../../../assets/js/fetchAPI.js"></script>
+   <script src="../../../assets/js/socket.io.min.js"></script>
+   <script src="../../../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../../../assets/libs/apexCharts/apexCharts.js"></script>
+
+   <!-- Verifica Se tem acesso ao módulo -->
+   <script src="assets/js/script.js"></script>
+</body>
+</html>
