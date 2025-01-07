@@ -35,6 +35,7 @@ const Importation = {
             DATEPART(MONTH, Lhs.Data_Abertura_Processo) AS Mes,
             DATEPART(YEAR, Lhs.Data_Abertura_Processo) AS Ano,
             COALESCE(Lmh.Total_TEUS,0) AS Teus,
+            Lhs.IdEmpresa_Sistema,
             Lhs.Numero_Processo,
             CASE 
                WHEN Lhs.Tipo_Carga = 1 /* Aéreo */ AND Lms.IdCompanhia_Transporte IN (88 /*FEDEX*/, 49339 /*DHL*/, 58828 /*UPS*/) THEN 'IA-COURIER'
