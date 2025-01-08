@@ -20,7 +20,7 @@ const WebSocket = {
           WebSocket.lastId = id; // O lastId será atualizado com o novo valor consultado
           io.emit('newProcess');
         }
-      }, 1000); /* 2 minutos */
+      }, 120000); /* 2 minutos */
     })
   },
 
