@@ -175,6 +175,8 @@ document.addEventListener("DOMContentLoaded", async () => {
    const listGoalActualYear = await makeRequest('/api/financial/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
 
    graphicMonthForMonth(receiptActualYear, listGoalActualYear)
+
+   introMain()
    
    document.querySelector('#loader2').classList.add('d-none');
 });
