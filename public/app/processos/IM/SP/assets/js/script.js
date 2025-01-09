@@ -55,25 +55,29 @@ function sumForMonth(data, allowedMonths) {
 // Separa os arrays por tipo de processo
 function separateArraysByType(arrayValuesForMonth) {
    const ia_normal = [];
-   const ia_courier = [];
+   // const ia_courier = [];
    const im_lcl = [];
    const im_fcl_teus = [];
 
    arrayValuesForMonth.forEach(month => {
       ia_normal.push(month.IA_NORMAL);
-      ia_courier.push(month.IA_COURIER);
+      // ia_courier.push(month.IA_COURIER);
       im_lcl.push(month.IM_LCL);
       im_fcl_teus.push(month.IM_FCL_TEUS);
    });
 
-   return {ia_normal, ia_courier, im_lcl, im_fcl_teus};
+   return {
+      ia_normal, 
+      // ia_courier, 
+      im_lcl, 
+      im_fcl_teus};
 };
 
 // Cria o grafico mes a mes
 let chartIM_LCL = null;
 let chartIM_FCL = null;
 let chartIA_NORMAL = null;
-let chartIA_COURIER = null;
+// let chartIA_COURIER = null;
 async function graphicMonthForMonth(dataActualYear, dataGoal) {
    // Extrai os meses permitidos do dataGoal
    const allowedMonths = [...new Set(dataGoal.map((item) => item.month))]
@@ -86,20 +90,20 @@ async function graphicMonthForMonth(dataActualYear, dataGoal) {
    const im_lcl = separatedArrays.im_lcl;
    const im_fcl_teus = separatedArrays.im_fcl_teus;
    const ia_normal = separatedArrays.ia_normal;
-   const ia_courier = separatedArrays.ia_courier;
+   // const ia_courier = separatedArrays.ia_courier;
    
    // Extrai as METAS de cada mês e tipo de processo
    const goalForMonth = {
       im_lcl: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IM-LCL-PROCESSOS').map(item => item.value),
       im_fcl_teus: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IM-TEUS').map(item => item.value),
       ia_normal: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IA-NORMAL-PROCESSOS').map(item => item.value),
-      ia_courier: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IA-COURIER-PROCESSOS').map(item => item.value),
+      // ia_courier: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IA-COURIER-PROCESSOS').map(item => item.value),
    };
 
    const goalForMonthIM_LCL = goalForMonth.im_lcl;
    const goalForMonthIM_FCL_TEUS = goalForMonth.im_fcl_teus;
    const goalForMonthIA_NORMAL = goalForMonth.ia_normal;
-   const goalForMonthIA_COURIER = goalForMonth.ia_courier;
+   // const goalForMonthIA_COURIER = goalForMonth.ia_courier;
 
    // Gráfico de Processos de Importação Marítima FCL
    var optionsIM_LCL = {
@@ -405,104 +409,104 @@ async function graphicMonthForMonth(dataActualYear, dataGoal) {
 
 
    // Gráfico de Processos de Importação Aérea COURIER
-   var optionsIA_COURIER = {
-      series: [
-         {
-            name: "Valores",
-            data: ia_courier,
-         },
-         {
-            name: "Meta",
-            data: goalForMonthIA_COURIER,
-         },
-      ],
+   // var optionsIA_COURIER = {
+   //    series: [
+   //       {
+   //          name: "Valores",
+   //          data: ia_courier,
+   //       },
+   //       {
+   //          name: "Meta",
+   //          data: goalForMonthIA_COURIER,
+   //       },
+   //    ],
    
-      chart: {
-         type: "bar",
-         height: 700,
-         toolbar: {
-            show: false,
-         },
-      },
+   //    chart: {
+   //       type: "bar",
+   //       height: 700,
+   //       toolbar: {
+   //          show: false,
+   //       },
+   //    },
    
-      colors: ["#F9423A", "#3F2021"],
+   //    colors: ["#F9423A", "#3F2021"],
    
-      plotOptions: {
-         bar: {
-            borderRadius: 2,
-            columnWidth: "25%",
-            horizontal: true,
-            dataLabels: {
-               position: "top",
-            },
-         },
-      },
+   //    plotOptions: {
+   //       bar: {
+   //          borderRadius: 2,
+   //          columnWidth: "25%",
+   //          horizontal: true,
+   //          dataLabels: {
+   //             position: "top",
+   //          },
+   //       },
+   //    },
    
-      dataLabels: {
-         enabled: true,
-         enabledOnSeries: [0, 1], // ativa os rótulos para ambas as séries
-         formatter: function (val, opts) {
-            const seriesIndex = opts.seriesIndex;
-            if (seriesIndex === 0) {
-               // Se for a primeira serie de processos do ano atual, mostra o valor correspondente
-               return ia_courier[opts.dataPointIndex];
-            } else if (seriesIndex === 1) {
-               // Se for a segunda sére (Meta), mostra o valor correspondente
-               return goalForMonthIA_COURIER[opts.dataPointIndex];
-            }
-         },
-         offsetX: 30,
-         style: {
-            fontSize: "12px",
-            colors: ["#F9423A", "#3F2021"],
-         },
-         background: {
-            enabled: true,
-            foreColor: "#fff",
-            borderRadius: 2,
-            padding: 4,
-            opacity: 0.9,
-            borderWidth: 1,
-            borderColor: "#fff",
-         },
-      },
+   //    dataLabels: {
+   //       enabled: true,
+   //       enabledOnSeries: [0, 1], // ativa os rótulos para ambas as séries
+   //       formatter: function (val, opts) {
+   //          const seriesIndex = opts.seriesIndex;
+   //          if (seriesIndex === 0) {
+   //             // Se for a primeira serie de processos do ano atual, mostra o valor correspondente
+   //             return ia_courier[opts.dataPointIndex];
+   //          } else if (seriesIndex === 1) {
+   //             // Se for a segunda sére (Meta), mostra o valor correspondente
+   //             return goalForMonthIA_COURIER[opts.dataPointIndex];
+   //          }
+   //       },
+   //       offsetX: 30,
+   //       style: {
+   //          fontSize: "12px",
+   //          colors: ["#F9423A", "#3F2021"],
+   //       },
+   //       background: {
+   //          enabled: true,
+   //          foreColor: "#fff",
+   //          borderRadius: 2,
+   //          padding: 4,
+   //          opacity: 0.9,
+   //          borderWidth: 1,
+   //          borderColor: "#fff",
+   //       },
+   //    },
    
-      stroke: {
-         show: true,
-         width: 1,
-         colors: ["#fff"],
-      },
+   //    stroke: {
+   //       show: true,
+   //       width: 1,
+   //       colors: ["#fff"],
+   //    },
    
-      tooltip: {
-         shared: true,
-         enabled: false,
-         intersect: false,
-      },
+   //    tooltip: {
+   //       shared: true,
+   //       enabled: false,
+   //       intersect: false,
+   //    },
    
-      xaxis: {
-         categories: allowedMonths.map((mes) => months[mes - 1]),
-         labels: {
-            show: false,
-         },
-      },
+   //    xaxis: {
+   //       categories: allowedMonths.map((mes) => months[mes - 1]),
+   //       labels: {
+   //          show: false,
+   //       },
+   //    },
    
-      xaxis: {
-         categories: allowedMonths.map((mes) => months[mes - 1]),
-         labels: {
-            show: false,
-         },
-      },
-   };
+   //    xaxis: {
+   //       categories: allowedMonths.map((mes) => months[mes - 1]),
+   //       labels: {
+   //          show: false,
+   //       },
+   //    },
+   // };
 
-   if (chartIA_COURIER) {
-      chartIA_COURIER.updateOptions(optionsIA_COURIER);
-   } else {
-      chartIA_COURIER = new ApexCharts(
-         document.querySelector("#IA-COURIER"),
-         optionsIA_COURIER
-      );
-      chartIA_COURIER.render();
-   }
+   // if (chartIA_COURIER) {
+   //    chartIA_COURIER.updateOptions(optionsIA_COURIER);
+   // } else {
+   //    chartIA_COURIER = new ApexCharts(
+   //       document.querySelector("#IA-COURIER"),
+   //       optionsIA_COURIER
+   //    );
+   //    chartIA_COURIER.render();
+   // }
 };
 
 
