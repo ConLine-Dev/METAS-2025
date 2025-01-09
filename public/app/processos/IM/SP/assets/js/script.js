@@ -55,18 +55,22 @@ function sumForMonth(data, allowedMonths) {
 // Separa os arrays por tipo de processo
 function separateArraysByType(arrayValuesForMonth) {
    const ia_normal = [];
-   const ia_courier = [];
+   // const ia_courier = [];
    const im_lcl = [];
    const im_fcl_teus = [];
 
    arrayValuesForMonth.forEach(month => {
       ia_normal.push(month.IA_NORMAL);
-      ia_courier.push(month.IA_COURIER);
+      // ia_courier.push(month.IA_COURIER);
       im_lcl.push(month.IM_LCL);
       im_fcl_teus.push(month.IM_FCL_TEUS);
    });
 
-   return {ia_normal, ia_courier, im_lcl, im_fcl_teus};
+   return {
+      ia_normal, 
+      // ia_courier, 
+      im_lcl, 
+      im_fcl_teus};
 };
 
 // Cria o grafico mes a mes
@@ -86,7 +90,7 @@ async function graphicMonthForMonth(dataActualYear, dataGoal) {
    const im_lcl = separatedArrays.im_lcl;
    const im_fcl_teus = separatedArrays.im_fcl_teus;
    const ia_normal = separatedArrays.ia_normal;
-   const ia_courier = separatedArrays.ia_courier;
+   // const ia_courier = separatedArrays.ia_courier;
    
    // Extrai as METAS de cada mês e tipo de processo
    const goalForMonth = {
