@@ -5,7 +5,7 @@
   },
   {
     "element": ".intro_meta_fin_tv",
-    "title": "Gráfico Mensal de Metas",
+    "title": "Gráfico Mensal de Metas - Financeiro",
     "intro": "O gráfico apresenta uma visualização clara e dinâmica do desempenho mensal, comparando os <strong>valores realizados</strong> com as <strong>metas estabelecidas</strong>. Aqui está como interpretá-lo:<br><br> 🔴 <strong>Valores Realizados (Barras Vermelhas):</strong><br><br> • As barras representam os valores reais alcançados no mês.<br> • Na parte superior de cada barra, você verá o percentual correspondente. Este valor indica a porcentagem alcançada em relação à meta para aquele mês.<br><br> 🟤 <strong>Metas (Linha Pontilhada):</strong><br><br> • A linha pontilhada em marrom exibe a meta projetada para cada mês.<br> • Esta linha serve como referência para avaliar o desempenho mensal, permitindo uma comparação direta entre o objetivo e o resultado alcançado.<br><br> 💡 <strong>Legenda:</strong><br><br> • A legenda, localizada na parte inferior, indica as cores associadas aos dados:<br><br> <strong><span style='color: red;'>Vermelho:</span></strong> Representa os valores realizados.<br> <strong><span style='color: #3F2021;'>Marrom:</span></strong> Representa a meta projetada."
   }
   
