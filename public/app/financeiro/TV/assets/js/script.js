@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
    graphicMonthForMonth(receiptActualYear, listGoalActualYear)
 
-   introMain()
+   introMain();
    
    document.querySelector('#loader2').classList.add('d-none');
 });
