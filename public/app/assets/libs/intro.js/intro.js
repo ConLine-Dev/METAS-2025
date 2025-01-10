@@ -1,5 +1,5 @@
-async function introMain() {
-    await intro();
+async function introMain(path) {
+    await intro(path);
   }
   
   // Função para verificar se um elemento existe no corpo do site
@@ -7,8 +7,9 @@ async function introMain() {
     return document.querySelector(selector) !== null;
   }
   
-  async function intro() {
-    const data = await makeRequest('../../assets/libs/intro.js/intro.json', 'GET')
+  async function intro(path) {
+    const data = await makeRequest(path || '../../assets/libs/intro.js/intro.json', 'GET')
+    
     
       // Filtra o array, mantendo apenas os elementos encontrados na página
       const filteredArray = data.filter(item => {
@@ -29,14 +30,18 @@ async function introMain() {
       .start();
   }
   
-  async function deleteCookie(cookieName) {
-    document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+  async function deleteCookie() {
+    document.cookie = 'introjs-dontShowAgain=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
   };
   
   const btn_tutorial = document.getElementById('btn-tutorial')
+
+  if (btn_tutorial) {
+    btn_tutorial.addEventListener('click', async function () {
+      await deleteCookie()
+      await introMain()
+    })
+  }
   
-  btn_tutorial.addEventListener('click', async function () {
-    await deleteCookie('introjs-dontShowAgain')
-    await introMain()
-  })
+  
   

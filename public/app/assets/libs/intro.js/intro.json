@@ -7,6 +7,26 @@
     "element": ".intro_meta_fin_tv",
     "title": "Gráfico Mensal de Metas - Financeiro",
     "intro": "O gráfico apresenta uma visualização clara e dinâmica do desempenho mensal, comparando os <strong>valores realizados</strong> com as <strong>metas estabelecidas</strong>. Aqui está como interpretá-lo:<br><br> 🔴 <strong>Valores Realizados (Barras Vermelhas):</strong><br><br> • As barras representam os valores reais alcançados no mês.<br> • Na parte superior de cada barra, você verá o percentual correspondente. Este valor indica a porcentagem alcançada em relação à meta para aquele mês.<br><br> 🟤 <strong>Metas (Linha Pontilhada):</strong><br><br> • A linha pontilhada em marrom exibe a meta projetada para cada mês.<br> • Esta linha serve como referência para avaliar o desempenho mensal, permitindo uma comparação direta entre o objetivo e o resultado alcançado.<br><br> 💡 <strong>Legenda:</strong><br><br> • A legenda, localizada na parte inferior, indica as cores associadas aos dados:<br><br> <strong><span style='color: red;'>Vermelho:</span></strong> Representa os valores realizados.<br> <strong><span style='color: #3F2021;'>Marrom:</span></strong> Representa a meta projetada."
+  },
+  {
+    "element": "#intro_meta_em_processos",
+    "title": "EM LCL - PROCESSOS",
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de processos da <strong>Exportação Marítima - LCL</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
+  },
+  {
+    "element": "#intro_meta_em_teus",
+    "title": "EM - TEUS",
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de TEUS da <strong>Exportação Marítima</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de TEUS das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
+  },
+  {
+    "element": "#intro_meta_ea_normal",
+    "title": "EA NORMAL - PROCESSOSS",
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de processos normais da <strong>Exportação Aérea</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos normais das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
+  },
+  {
+    "element": "#intro_meta_ea_courier",
+    "title": "EA COURIER - PROCESSOS",
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de processos courier da <strong>Exportação Aérea</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos courier das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
   }
   
 
