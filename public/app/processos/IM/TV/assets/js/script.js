@@ -505,6 +505,17 @@ async function graphicMonthForMonth(dataActualYear, dataGoal) {
    }
 };
 
+async function eventClick() {
+
+   const btn_tutorial = document.getElementById('btn-tutorial-meta')
+  
+  btn_tutorial.addEventListener('click', async function () {
+      document.cookie = 'introjs-dontShowAgain=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      await introMain('../../../assets/libs/intro.js/intro.json')
+  })
+   
+}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
    await checkLogin(); // Verifica se o usuario esta logado/ativo
@@ -515,6 +526,10 @@ document.addEventListener("DOMContentLoaded", async () => {
    const listAllProcesses = await makeRequest('/api/importation/listAllProcesses', 'POST', { hash: dataLocal.hash_code }); // Lista os recebimentos do ano atual
    const listGoalActualYear = await makeRequest('/api/importation/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
    graphicMonthForMonth(listAllProcesses, listGoalActualYear)
+
+   introMain('../../../assets/libs/intro.js/intro.json');
+
+   eventClick();
 
    document.querySelector('#loader2').classList.add('d-none');
 });

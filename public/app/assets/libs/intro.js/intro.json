@@ -11,7 +11,7 @@
   {
     "element": "#intro_meta_em_processos",
     "title": "EM LCL - PROCESSOS",
-    "intro": "Nesta seção, você pode acompanhar as metas mensais de processos da <strong>Exportação Marítima - LCL</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de processos da <strong>Exportação Marítima - LCL</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos LCL das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
   },
   {
     "element": "#intro_meta_em_teus",
@@ -27,6 +27,26 @@
     "element": "#intro_meta_ea_courier",
     "title": "EA COURIER - PROCESSOS",
     "intro": "Nesta seção, você pode acompanhar as metas mensais de processos courier da <strong>Exportação Aérea</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos courier das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
+  },
+  {
+    "element": "#intro_meta_im_processos",
+    "title": "IM LCL - PROCESSOS",
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de processos da <strong>Importação Marítima - LCL</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos LCL das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
+  },
+  {
+    "element": "#intro_meta_im_teus",
+    "title": "IM - TEUS",
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de TEUS da <strong>Importação Marítima</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de TEUS das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
+  },
+  {
+    "element": "#intro_meta_ia_normal",
+    "title": "IA NORMAL - PROCESSOS",
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de processos normais da <strong>Importação Aérea</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos normais das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
+  },
+  {
+    "element": "#intro_meta_ia_courier",
+    "title": "IA COURIER - PROCESSOS",
+    "intro": "Nesta seção, você pode acompanhar as metas mensais de processos courier da <strong>Importação Aérea</strong>. As barras <strong><span style='color: #3F2021;'>marrons</span></strong> representam a quantidade de processos courier das metas estabelecidas, enquanto as barras <strong><span style='color: red;'>vermelhas</span></strong> mostram os resultados alcançados."
   }
   
 

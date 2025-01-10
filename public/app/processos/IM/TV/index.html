@@ -11,6 +11,8 @@
    <link rel="icon" href="../../../assets/images/brand-logos/favicon.png" type="image/x-icon">
    <!-- Bootstrap Css -->
    <link id="style" href="../../../assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- IntroJs Css -->
+   <link rel="stylesheet" href="../../../assets/libs/intro.js/intro.min.css">
    <!-- Style Css -->
    <link href="../../../assets/css/styles.min.css" rel="stylesheet">
    <!-- Icons Css -->
@@ -21,6 +23,11 @@
    <script src="../../../assets/js/main.js"></script>
 </head>
 <body>
+
+   <!-- TUTORIAL -->
+   <span class="avatar avatar-md p-2 bg-warning" id="btn-tutorial-meta" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Visualizar Tutorial" style="position: fixed; display: flex; top: 50%; right: 0px; z-index: 99999;"> 
+      <img src="../../../assets/images/brand-logos/mycon.svg" alt="mycon">
+   </span>
 
    <!-- LOADER -->
    <div id="loader2">
@@ -145,7 +152,7 @@
                         <div class="row cards-processos">
 
                            <div class="col-xl col-lg col-md col-sm-12">
-                              <div class="card custom-card intro-mensal-processos" style="height: 80vh">
+                              <div class="card custom-card intro-mensal-processos" id="intro_meta_im_processos" style="height: 80vh">
                                  <div class="card-header justify-content-between" style="padding: 10px 26px;"> 
                                     <div class="card-title"> IM LCL - PROCESSOS </div> 
                                  </div>
@@ -156,7 +163,7 @@
                            </div>
 
                            <div class="col-xl col-lg col-md col-sm-12">
-                              <div class="card custom-card" style="height: 80vh">
+                              <div class="card custom-card" id="intro_meta_im_teus" style="height: 80vh">
                                  <div class="card-header justify-content-between" style="padding: 10px 26px;"> 
                                     <div class="card-title"> IM TEUS </div> 
                                  </div>
@@ -167,7 +174,7 @@
                            </div>
             
                            <div class="col-xl col-lg col-md col-sm-12">
-                              <div class="card custom-card" style="height: 80vh">
+                              <div class="card custom-card" id="intro_meta_ia_normal" style="height: 80vh">
                                  <div class="card-header justify-content-between" style="padding: 10px 26px;"> 
                                     <div class="card-title"> IA NORMAL - PROCESSOS </div> 
                                  </div>
@@ -178,7 +185,7 @@
                            </div>
             
                            <div class="col-xl col-lg col-md col-sm-12">
-                              <div class="card custom-card" style="height: 80vh">
+                              <div class="card custom-card" id="intro_meta_ia_courier" style="height: 80vh">
                                  <div class="card-header justify-content-between" style="padding: 10px 26px;"> 
                                     <div class="card-title"> IA COURIER - PROCESSOS </div> 
                                  </div>
@@ -215,6 +222,8 @@
    <!-- Neste main tem a função THE FETCH que consulta no banco de dados -->
    <script src="../../../assets/js/fetchAPI.js"></script>
    <script src="../../../assets/js/socket.io.min.js"></script>
+   <script src="../../../assets/libs/intro.js/intro.js"></script>
+   <script src="../../../assets/libs/intro.js/intro.min.js"></script>
    <script src="../../../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
    <script src="../../../assets/libs/apexCharts/apexCharts.js"></script>
 
