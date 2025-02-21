@@ -583,13 +583,8 @@ async function graphicMonthForMonthSP(dataActualYear, dataGoal) {
    
    // Combina os valores mensais de IA NORMAL e COURIER
    const ia_total = allowedMonths.map(month => {
-      const monthData = arrayValuesForMonth.filter(item => item.month === month);
-      return monthData.reduce((acc, item) => {
-         if (item.type === 'IA-NORMAL' || item.type === 'IA-COURIER') {
-            return acc + item.value;
-         }
-         return acc;
-      }, 0);
+      const monthData = arrayValuesForMonth.find(item => item.MES === month);
+      return monthData ? monthData.IA_NORMAL + monthData.IA_COURIER : 0;
    });
    
    // Extrai as METAS de cada mês e tipo de processo  
