@@ -536,8 +536,7 @@ async function graphicMonthForMonthITJ(dataActualYear, dataGoal) {
 // Cria o grafico mes a mes de SP
 let chartIM_LCL_SP = null;
 let chartIM_FCL_SP = null;
-let chartIA_NORMAL_SP = null;
-let chartIA_COURIER_SP = null;
+let chartIA_TOTAL_SP = null;
 async function graphicMonthForMonthSP(dataActualYear, dataGoal) {
    // Extrai os meses permitidos do dataGoal
    const allowedMonths = [...new Set(dataGoal.map((item) => item.month))]
@@ -548,26 +547,31 @@ async function graphicMonthForMonthSP(dataActualYear, dataGoal) {
    // Soma de faturamento total por empresa, considerando até o último mês com metas
    const filterValues_IMLCL_SP = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 4 && item.Mes <= maxMonth && item.Tipo_Processo === 'IM-LCL').length;
    const filterValues_IMFCL_SP = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 4 && item.Mes <= maxMonth && item.Tipo_Processo === 'IM-FCL').reduce((acc, item) => acc + item.Teus, 0);
-   console.log(filterValues_IMFCL_SP, 'filterValues_IMFCL_SP');
    
-   const filterValues_IA_NORMAL_SP = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 4 && item.Mes <= maxMonth && item.Tipo_Processo === 'IA-NORMAL').length;
-   const filterValues_IA_COURIER_SP = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 4 && item.Mes <= maxMonth && item.Tipo_Processo === 'IA-COURIER').length;
+   // Combina os valores de IA NORMAL e COURIER
+   const filterValues_IA_TOTAL_SP = dataActualYear.filter((item) => 
+      item.IdEmpresa_Sistema === 4 && 
+      item.Mes <= maxMonth && 
+      (item.Tipo_Processo === 'IA-NORMAL' || item.Tipo_Processo === 'IA-COURIER')
+   ).length;
 
    document.getElementById('IM-LCL-ANUAL-SP').textContent = filterValues_IMLCL_SP;
    document.getElementById('IM-TEUS-ANUAL-SP').textContent = filterValues_IMFCL_SP;
-   document.getElementById('IA-NORMAL-ANUAL-SP').textContent = filterValues_IA_NORMAL_SP;
-   document.getElementById('IA-COURIER-ANUAL-SP').textContent = filterValues_IA_COURIER_SP;
+   document.getElementById('IA-TOTAL-ANUAL-SP').textContent = filterValues_IA_TOTAL_SP;
 
    // Soma de meta total por empresa
    const filterGoals_IM_LCL_PROCESSOS_SP = dataGoal.filter((item) => item.companie_id_headcargo === 4 && item.type === 'IM-LCL-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
    const filterGoals_IM_FCL_TEUS_SP = dataGoal.filter((item) => item.companie_id_headcargo === 4 && item.type === 'IM-TEUS').reduce((acc, item) => acc + item.value, 0);
-   const filterGoals_IA_NORMAL_PROCESSOS_SP = dataGoal.filter((item) => item.companie_id_headcargo === 4 && item.type === 'IA-NORMAL-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
-   const filterGoals_IA_COURIER_PROCESSOS_SP = dataGoal.filter((item) => item.companie_id_headcargo === 4 && item.type === 'IA-COURIER-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
+   
+   // Combina as metas de IA NORMAL e COURIER
+   const filterGoals_IA_TOTAL_PROCESSOS_SP = dataGoal.filter((item) => 
+      item.companie_id_headcargo === 4 && 
+      (item.type === 'IA-NORMAL-PROCESSOS' || item.type === 'IA-COURIER-PROCESSOS')
+   ).reduce((acc, item) => acc + item.value, 0);
 
    document.getElementById('IM-LCL-META-ANUAL-SP').textContent = filterGoals_IM_LCL_PROCESSOS_SP;
    document.getElementById('IM-TEUS-META-ANUAL-SP').textContent = filterGoals_IM_FCL_TEUS_SP;
-   document.getElementById('IA-NORMAL-META-ANUAL-SP').textContent = filterGoals_IA_NORMAL_PROCESSOS_SP;
-   document.getElementById('IA-COURIER-META-ANUAL-SP').textContent = filterGoals_IA_COURIER_PROCESSOS_SP;
+   document.getElementById('IA-TOTAL-META-ANUAL-SP').textContent = filterGoals_IA_TOTAL_PROCESSOS_SP;
 
    // Atualiza os meses permitidos no sumForMonth
    const arrayValuesForMonth = sumForMonth(dataActualYear, allowedMonths, 4 /* SP */);
@@ -576,22 +580,36 @@ async function graphicMonthForMonthSP(dataActualYear, dataGoal) {
    // Extrai apenas os valores de cada MES / Tipo de processo
    const im_lcl = separatedArrays.im_lcl;
    const im_fcl_teus = separatedArrays.im_fcl_teus;
-   const ia_normal = separatedArrays.ia_normal;
-   const ia_courier = separatedArrays.ia_courier;
+   
+   // Combina os valores mensais de IA NORMAL e COURIER
+   const ia_total = allowedMonths.map(month => {
+      const monthData = arrayValuesForMonth.filter(item => item.month === month);
+      return monthData.reduce((acc, item) => {
+         if (item.type === 'IA-NORMAL' || item.type === 'IA-COURIER') {
+            return acc + item.value;
+         }
+         return acc;
+      }, 0);
+   });
    
    // Extrai as METAS de cada mês e tipo de processo  
    const goalForMonth = {
       im_lcl: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IM-LCL-PROCESSOS' && item.companie_id_headcargo === 4 /* SP */).map(item => item.value),
       im_fcl_teus: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IM-TEUS' && item.companie_id_headcargo === 4 /* SP */).map(item => item.value),
-      ia_normal: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IA-NORMAL-PROCESSOS' && item.companie_id_headcargo === 4 /* SP */).map(item => item.value),
-      ia_courier: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IA-COURIER-PROCESSOS' && item.companie_id_headcargo === 4 /* SP */).map(item => item.value),
+      ia_total: allowedMonths.map(month => {
+         const monthGoals = dataGoal.filter(item => 
+            item.month === month && 
+            item.companie_id_headcargo === 4 && 
+            (item.type === 'IA-NORMAL-PROCESSOS' || item.type === 'IA-COURIER-PROCESSOS')
+         );
+         return monthGoals.reduce((acc, item) => acc + item.value, 0);
+      })
    };
 
    const goalForMonthIM_LCL = goalForMonth.im_lcl;
    const goalForMonthIM_FCL_TEUS = goalForMonth.im_fcl_teus;
-   const goalForMonthIA_NORMAL = goalForMonth.ia_normal;
-   const goalForMonthIA_COURIER = goalForMonth.ia_courier;
-
+   const goalForMonthIA_TOTAL = goalForMonth.ia_total;
+   
    // Gráfico de Processos de Importação Marítima FCL
    var optionsIM_LCL = {
       series: [
@@ -794,16 +812,16 @@ async function graphicMonthForMonthSP(dataActualYear, dataGoal) {
    }
 
 
-   // Gráfico de Processos de Importação Aérea NORMAL
-   var optionsIA_NORMAL = {
+   // Gráfico de Processos de Importação Aérea Total
+   var optionsIA_TOTAL = {
       series: [
          {
             name: "Valores",
-            data: ia_normal,
+            data: ia_total,
          },
          {
             name: "Meta",
-            data: goalForMonthIA_NORMAL,
+            data: goalForMonthIA_TOTAL,
          },
       ],
    
@@ -835,10 +853,10 @@ async function graphicMonthForMonthSP(dataActualYear, dataGoal) {
             const seriesIndex = opts.seriesIndex;
             if (seriesIndex === 0) {
                // Se for a primeira serie de processos do ano atual, mostra o valor correspondente
-               return ia_normal[opts.dataPointIndex];
+               return ia_total[opts.dataPointIndex];
             } else if (seriesIndex === 1) {
                // Se for a segunda sére (Meta), mostra o valor correspondente
-               return goalForMonthIA_NORMAL[opts.dataPointIndex];
+               return goalForMonthIA_TOTAL[opts.dataPointIndex];
             }
          },
          offsetX: 30,
@@ -874,125 +892,17 @@ async function graphicMonthForMonthSP(dataActualYear, dataGoal) {
          labels: {
             show: false,
          },
-      },
-   
-      xaxis: {
-         categories: allowedMonths.map((mes) => months[mes - 1]),
-         labels: {
-            show: false,
-         },
-      },
+      }
    };
 
-   if (chartIA_NORMAL_SP) {
-      chartIA_NORMAL_SP.updateOptions(optionsIA_NORMAL);
+   if (chartIA_TOTAL_SP) {
+      chartIA_TOTAL_SP.updateOptions(optionsIA_TOTAL);
    } else {
-      chartIA_NORMAL_SP = new ApexCharts(
-         document.querySelector("#IA-NORMAL-SP"),
-         optionsIA_NORMAL
+      chartIA_TOTAL_SP = new ApexCharts(
+         document.querySelector("#IA-TOTAL-SP"),
+         optionsIA_TOTAL
       );
-      chartIA_NORMAL_SP.render();
-   }
-
-
-   // Gráfico de Processos de Importação Aérea COURIER
-   var optionsIA_COURIER = {
-      series: [
-         {
-            name: "Valores",
-            data: ia_courier,
-         },
-         {
-            name: "Meta",
-            data: goalForMonthIA_COURIER,
-         },
-      ],
-   
-      chart: {
-         type: "bar",
-         height: 600,
-         toolbar: {
-            show: false,
-         },
-      },
-   
-      colors: ["#F9423A", "#3F2021"],
-   
-      plotOptions: {
-         bar: {
-            borderRadius: 2,
-            columnWidth: "25%",
-            horizontal: true,
-            dataLabels: {
-               position: "top",
-            },
-         },
-      },
-   
-      dataLabels: {
-         enabled: true,
-         enabledOnSeries: [0, 1], // ativa os rótulos para ambas as séries
-         formatter: function (val, opts) {
-            const seriesIndex = opts.seriesIndex;
-            if (seriesIndex === 0) {
-               // Se for a primeira serie de processos do ano atual, mostra o valor correspondente
-               return ia_courier[opts.dataPointIndex];
-            } else if (seriesIndex === 1) {
-               // Se for a segunda sére (Meta), mostra o valor correspondente
-               return goalForMonthIA_COURIER[opts.dataPointIndex];
-            }
-         },
-         offsetX: 30,
-         style: {
-            fontSize: "12px",
-            colors: ["#F9423A", "#3F2021"],
-         },
-         background: {
-            enabled: true,
-            foreColor: "#fff",
-            borderRadius: 2,
-            padding: 4,
-            opacity: 0.9,
-            borderWidth: 1,
-            borderColor: "#fff",
-         },
-      },
-   
-      stroke: {
-         show: true,
-         width: 1,
-         colors: ["#fff"],
-      },
-   
-      tooltip: {
-         shared: true,
-         enabled: false,
-         intersect: false,
-      },
-   
-      xaxis: {
-         categories: allowedMonths.map((mes) => months[mes - 1]),
-         labels: {
-            show: false,
-         },
-      },
-   
-      xaxis: {
-         categories: allowedMonths.map((mes) => months[mes - 1]),
-         labels: {
-            show: false,
-         },
-      },
-   };
-
-   if (chartIA_COURIER_SP) {
-      chartIA_COURIER_SP.updateOptions(optionsIA_COURIER);
-   } else {
-      chartIA_COURIER_SP = new ApexCharts(
-         document.querySelector("#IA-COURIER-SP"),
-         optionsIA_COURIER
-      );
-      chartIA_COURIER_SP.render();
+      chartIA_TOTAL_SP.render();
    }
 };
 
