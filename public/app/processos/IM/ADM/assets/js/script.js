@@ -416,7 +416,7 @@ async function graphicMonthForMonthITJ(dataActualYear, dataGoal) {
       xaxis: {
          categories: allowedMonths.map((mes) => months[mes - 1]),
          labels: {
-            show: false,
+           show: false,
          },
       },
    };
@@ -517,7 +517,7 @@ async function graphicMonthForMonthITJ(dataActualYear, dataGoal) {
       xaxis: {
          categories: allowedMonths.map((mes) => months[mes - 1]),
          labels: {
-            show: false,
+           show: false,
          },
       },
    };
@@ -592,12 +592,19 @@ async function graphicMonthForMonthSP(dataActualYear, dataGoal) {
       im_lcl: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IM-LCL-PROCESSOS' && item.companie_id_headcargo === 4 /* SP */).map(item => item.value),
       im_fcl_teus: dataGoal.filter(item => allowedMonths.includes(item.month) && item.type === 'IM-TEUS' && item.companie_id_headcargo === 4 /* SP */).map(item => item.value),
       ia_total: allowedMonths.map(month => {
-         const monthGoals = dataGoal.filter(item => 
+         const normalGoal = dataGoal.find(item => 
             item.month === month && 
             item.companie_id_headcargo === 4 && 
-            (item.type === 'IA-NORMAL-PROCESSOS' || item.type === 'IA-COURIER-PROCESSOS')
-         );
-         return monthGoals.reduce((acc, item) => acc + item.value, 0);
+            item.type === 'IA-NORMAL-PROCESSOS'
+         )?.value || 0;
+         
+         const courierGoal = dataGoal.find(item => 
+            item.month === month && 
+            item.companie_id_headcargo === 4 && 
+            item.type === 'IA-COURIER-PROCESSOS'
+         )?.value || 0;
+         
+         return normalGoal + courierGoal;
       })
    };
 
