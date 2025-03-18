@@ -82,6 +82,32 @@ async function graphicMonthForMonth(dataActualYear, dataGoal) {
    const arrayValuesForMonth = sumForMonth(dataActualYear, allowedMonths);
    const separatedArrays = separateArraysByType(arrayValuesForMonth);
 
+
+      // Determinar o último mês com metas lançadas
+      const maxMonth = Math.max(...allowedMonths);
+
+      // Soma de faturamento total por empresa, considerando até o último mês com metas
+      const filterValues_IMLCL_ITJ = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 1 && item.Mes <= maxMonth && item.Tipo_Processo === 'IM-LCL').length;
+      const filterValues_IMFCL_ITJ = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 1 && item.Mes <= maxMonth && item.Tipo_Processo === 'IM-FCL').reduce((acc, item) => acc + item.Teus, 0);
+      const filterValues_IA_NORMAL_ITJ = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 1 && item.Mes <= maxMonth && item.Tipo_Processo === 'IA-NORMAL').length;
+      const filterValues_IA_COURIER_ITJ = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 1 && item.Mes <= maxMonth && item.Tipo_Processo === 'IA-COURIER').length;
+   
+      document.getElementById('IM-LCL-ANUAL-ITJ').textContent = filterValues_IMLCL_ITJ;
+      document.getElementById('IM-TEUS-ANUAL-ITJ').textContent = filterValues_IMFCL_ITJ;
+      document.getElementById('IA-NORMAL-ANUAL-ITJ').textContent = filterValues_IA_NORMAL_ITJ;
+      document.getElementById('IA-COURIER-ANUAL-ITJ').textContent = filterValues_IA_COURIER_ITJ;
+   
+      // Soma de meta total por empresa
+      const filterGoals_IM_LCL_PROCESSOS_ITJ = dataGoal.filter((item) => item.companie_id_headcargo === 1 && item.type === 'IM-LCL-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
+      const filterGoals_IM_FCL_TEUS_ITJ = dataGoal.filter((item) => item.companie_id_headcargo === 1 && item.type === 'IM-TEUS').reduce((acc, item) => acc + item.value, 0);
+      const filterGoals_IA_NORMAL_PROCESSOS_ITJ = dataGoal.filter((item) => item.companie_id_headcargo === 1 && item.type === 'IA-NORMAL-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
+      const filterGoals_IA_COURIER_PROCESSOS_ITJ = dataGoal.filter((item) => item.companie_id_headcargo === 1 && item.type === 'IA-COURIER-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
+   
+      document.getElementById('IM-LCL-META-ANUAL-ITJ').textContent = filterGoals_IM_LCL_PROCESSOS_ITJ;
+      document.getElementById('IM-TEUS-META-ANUAL-ITJ').textContent = filterGoals_IM_FCL_TEUS_ITJ;
+      document.getElementById('IA-NORMAL-META-ANUAL-ITJ').textContent = filterGoals_IA_NORMAL_PROCESSOS_ITJ;
+      document.getElementById('IA-COURIER-META-ANUAL-ITJ').textContent = filterGoals_IA_COURIER_PROCESSOS_ITJ;
+
    // Extrai apenas os valores de cada MES / Tipo de processo
    const im_lcl = separatedArrays.im_lcl;
    const im_fcl_teus = separatedArrays.im_fcl_teus;
