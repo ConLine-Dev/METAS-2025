@@ -86,10 +86,10 @@ async function graphicMonthForMonth(dataActualYear, dataGoal) {
    const maxMonth = Math.max(...allowedMonths);
 
    // Soma de faturamento total por empresa, considerando até o último mês com metas
-   const filterValues_EMLCL_ITJ = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 1 && item.Mes <= maxMonth && item.Tipo_Processo === 'EM-LCL').length;
-   const filterValues_EMFCL_ITJ = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 1 && item.Mes <= maxMonth && item.Tipo_Processo === 'EM-FCL').reduce((acc, item) => acc + item.Teus, 0);
-   const filterValues_EA_NORMAL_ITJ = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 1 && item.Mes <= maxMonth && item.Tipo_Processo === 'EA-NORMAL').length;
-   const filterValues_EA_COURIER_ITJ = dataActualYear.filter((item) => item.IdEmpresa_Sistema === 1 && item.Mes <= maxMonth && item.Tipo_Processo === 'EA-COURIER').length;
+   const filterValues_EMLCL_ITJ = dataActualYear.filter((item) => item.Mes <= maxMonth && item.Tipo_Processo === 'EM-LCL').length;
+   const filterValues_EMFCL_ITJ = dataActualYear.filter((item) => item.Mes <= maxMonth && item.Tipo_Processo === 'EM-FCL').reduce((acc, item) => acc + item.Teus, 0);
+   const filterValues_EA_NORMAL_ITJ = dataActualYear.filter((item) => item.Mes <= maxMonth && item.Tipo_Processo === 'EA-NORMAL').length;
+   const filterValues_EA_COURIER_ITJ = dataActualYear.filter((item) => item.Mes <= maxMonth && item.Tipo_Processo === 'EA-COURIER').length;
 
    document.getElementById('EM-LCL-ANUAL-ITJ').textContent = filterValues_EMLCL_ITJ;
    document.getElementById('EM-TEUS-ANUAL-ITJ').textContent = filterValues_EMFCL_ITJ;
@@ -97,10 +97,10 @@ async function graphicMonthForMonth(dataActualYear, dataGoal) {
    document.getElementById('EA-COURIER-ANUAL-ITJ').textContent = filterValues_EA_COURIER_ITJ;
 
    // Soma de meta total por empresa
-   const filterGoals_EM_LCL_PROCESSOS_ITJ = dataGoal.filter((item) => item.companie_id_headcargo === 1 && item.type === 'EM-LCL-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
-   const filterGoals_EM_FCL_TEUS_ITJ = dataGoal.filter((item) => item.companie_id_headcargo === 1 && item.type === 'EM-TEUS').reduce((acc, item) => acc + item.value, 0);
-   const filterGoals_EA_NORMAL_PROCESSOS_ITJ = dataGoal.filter((item) => item.companie_id_headcargo === 1 && item.type === 'EA-NORMAL-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
-   const filterGoals_EA_COURIER_PROCESSOS_ITJ = dataGoal.filter((item) => item.companie_id_headcargo === 1 && item.type === 'EA-COURIER-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
+   const filterGoals_EM_LCL_PROCESSOS_ITJ = dataGoal.filter((item) => item.type === 'EM-LCL-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
+   const filterGoals_EM_FCL_TEUS_ITJ = dataGoal.filter((item) => item.type === 'EM-TEUS').reduce((acc, item) => acc + item.value, 0);
+   const filterGoals_EA_NORMAL_PROCESSOS_ITJ = dataGoal.filter((item) => item.type === 'EA-NORMAL-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
+   const filterGoals_EA_COURIER_PROCESSOS_ITJ = dataGoal.filter((item) => item.type === 'EA-COURIER-PROCESSOS').reduce((acc, item) => acc + item.value, 0);
 
    document.getElementById('EM-LCL-META-ANUAL-ITJ').textContent = filterGoals_EM_LCL_PROCESSOS_ITJ;
    document.getElementById('EM-TEUS-META-ANUAL-ITJ').textContent = filterGoals_EM_FCL_TEUS_ITJ;
