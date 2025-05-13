@@ -16,15 +16,15 @@ async function handleCredentialResponse(response) {
          const getCompanieId = await makeRequest('/api/users/getCompanieId', 'POST', { email: data.email }, true /* Ignorar checkLogin para evitar conflitos */);
          // O Id da empresa é o mesmo do headcargo.
          if (getCompanieId[0].companie_id_headcargo === 1 /* ITJ */) {
-            window.location.href = `/app/financeiro/ITJ`;
+            window.location.href = `/app/processos/IM/ITJ`;
          } else if (getCompanieId[0].companie_id_headcargo === 4 /* SP */) {
-            window.location.href = `/app/financeiro/SP`;
+            window.location.href = `/app/processos/IM/SP`;
          } else if (getCompanieId[0].companie_id_headcargo === 7 /* ADM */) {
             window.location.href = '/app/financeiro/ADM'
          } else if (getCompanieId[0].companie_id_headcargo === 8 /* TV */) {
             window.location.href = '/app/processos/IM/TV'
          } else {
-            window.location.href = `/app/financeiro/ITJ`;
+            window.location.href = `/app/processos/IM/ITJ`;
          }
 
       } else {
@@ -44,11 +44,11 @@ async function checkLocal (hash) {
    if (getCompanieId[0].companie_id_headcargo === 7 /* ADM */) {
       window.location.href = `/app/financeiro/ADM`;
    } else if (getCompanieId[0].companie_id_headcargo === 1 /* ITJ */) {
-      window.location.href = `/app/financeiro/ITJ`;
+      window.location.href = `/app/processos/IM/ITJ`;
    } else if (getCompanieId[0].companie_id_headcargo === 4 /* SP */) {
-      window.location.href = `/app/financeiro/SP`;
+      window.location.href = `/app/processos/IM/SP`;
    } else if (getCompanieId[0].companie_id_headcargo === 8 /* TV */) {
-      window.location.href = `/app/financeiro/TV`;
+      window.location.href = `/app/processos/IM/TV`;
    };
 }
 
