@@ -5,6 +5,7 @@ const Users = require('./api-users');
 const Financial = require('./api-financial');
 const Importation = require('./api-importation');
 const Exportation = require('./api-exportation');
+const Analytics = require('./api-analytics');
 
 // Function to set io instance
 const setIO = () => {
@@ -16,6 +17,9 @@ const setIO = () => {
   router.use('/importation', Importation);
   // Use as rotas do arquivo api-exportation.js
   router.use('/exportation', Exportation);
+  // Use as rotas do arquivo api-analytics.js
+  router.use('/analytics', Analytics);
+
 
   return router;
 };

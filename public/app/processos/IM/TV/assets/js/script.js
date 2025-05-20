@@ -572,3 +572,10 @@ socket.on('newProcess', async function (msg) {
    const listGoalActualYear = await makeRequest('/api/importation/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
    graphicMonthForMonth(listAllProcesses, listGoalActualYear)
 })
+
+// Importa e inicializa o listener de métricas de processo
+// Certifique-se de que o arquivo process-metrics-listener.js está incluído no HTML antes deste script
+if (typeof initProcessMetricsListener === 'function') {
+   console.log('initProcessMetricsListener')
+  initProcessMetricsListener(socket);
+}

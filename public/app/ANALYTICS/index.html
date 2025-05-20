@@ -5,26 +5,26 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Conline - Meta Comercial SP</title>
+   <title>Conline - Meta Comercial Analytics</title>
    <meta name="Description" content="Metas Conline">
    <!-- Favicon -->
-   <link rel="icon" href="../../../assets/images/brand-logos/favicon.png" type="image/x-icon">
+   <link rel="icon" href="../assets/images/brand-logos/favicon.png" type="image/x-icon">
    <!-- Bootstrap Css -->
-   <link id="style" href="../../../assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link id="style" href="../assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <!-- Style Css -->
-   <link href="../../../assets/css/styles.min.css" rel="stylesheet">
+   <link href="../assets/css/styles.min.css" rel="stylesheet">
    <!-- Icons Css -->
-   <link href="../../../assets/css/icons.css" rel="stylesheet">
+   <link href="../assets/css/icons.css" rel="stylesheet">
    <!-- Estilos da pagina -->
    <link rel="stylesheet" href="assets/css/styles.css">
    <!-- Neste main tem a função THE FETCH que consulta no banco de dados -->
-   <script src="../../../assets/js/main.js"></script>
+   <script src="../assets/js/main.js"></script>
 </head>
 <body>
 
    <!-- LOADER -->
    <div id="loader2">
-      <img src="../../../assets/images/media/loader.svg" alt="">
+      <img src="../assets/images/media/loader.svg" alt="">
    </div>
 
    <!-- header -->
@@ -36,11 +36,11 @@
             <div class="header-element">
                <div class="horizontal-logo">
                   <a href="#" class="header-logo" style="cursor: default;">
-                     <img src="../../../assets/images/brand-logos/logo.png" alt="logo" class="desktop-logo"
+                     <img src="../assets/images/brand-logos/logo.png" alt="logo" class="desktop-logo"
                         style="height: 1.5rem">
-                     <img src="../../../assets/images/brand-logos/logo-mycon.png" alt="logo" class="toggle-logo">
-                     <img src="../../../assets/images/brand-logos/logo-mycon-light.png" alt="logo" class="toggle-dark">
-                     <img src="../../../assets/images/brand-logos/logo-light.png" alt="logo" class="desktop-dark"
+                     <img src="../assets/images/brand-logos/logo-mycon.png" alt="logo" class="toggle-logo">
+                     <img src="../assets/images/brand-logos/logo-mycon-light.png" alt="logo" class="toggle-dark">
+                     <img src="../assets/images/brand-logos/logo-light.png" alt="logo" class="desktop-dark"
                         style="height: 1.5rem">
                   </a>
                </div>
@@ -77,7 +77,7 @@
          
       </div>
    </header>
-   <!-- /header -->
+   <!-- /header
 
    <!-- sidebar -->
    <aside class="app-sidebar sticky sticky-pin" id="sidebar">
@@ -98,16 +98,23 @@
                            <ul class="main-menu" style="display: block; margin-left: 0; margin-right: 0px;"> 
 
                               <!-- <li class="slide has-sub"> 
-                                 <a href="/app/financeiro/SP" class="side-menu__item"> 
+                                 <a href="/app/financeiro/ADM" class="side-menu__item"> 
                                     <i class="bi bi-person side-menu__icon"></i> 
-                                    <span class="side-menu__label" style="margin-right: 14px;">Meta financeira - SP</span> 
+                                    <span class="side-menu__label" style="margin-right: 14px;">Meta financeira - ADM</span> 
                                  </a>
                               </li> -->
 
                               <li class="slide has-sub"> 
-                                 <a href="/app/processos/IM/SP/" class="side-menu__item active"> 
+                                 <a href="/app/processos/IM/ADM" class="side-menu__item active"> 
                                     <i class="bi bi-person side-menu__icon"></i> 
-                                    <span class="side-menu__label" style="margin-right: 14px;">Meta Comercial IM - SP</span> 
+                                    <span class="side-menu__label" style="margin-right: 14px;">Meta Comercial IM - ADM</span> 
+                                 </a>
+                              </li>
+
+                              <li class="slide has-sub"> 
+                                 <a href="/app/processos/EM/ADM" class="side-menu__item"> 
+                                    <i class="bi bi-person side-menu__icon"></i> 
+                                    <span class="side-menu__label" style="margin-right: 14px;">Meta Comercial EM - ADM</span> 
                                  </a>
                               </li>
                               
@@ -124,96 +131,107 @@
    </div>
    <!-- End::main-sidebar -->
    </aside>
-   <!-- /sidebar -->
+   <!-- /sidebar
 
    <!-- Dashboard -->
    <div class="main-content app-content" style="position: relative; display: flex; align-items: center;">
       <div class="container-fluid">
+
         
+         <!-- EMPRESA ITJ -->
          <div class="row">
-            <div class="col-xl-4"></div>
-               <!-- Grafico Mensal -->
-                  <div class="row">
-                     <div class="col-xl-12">
-                        <div class="row cards-processos">
-
-                           <div class="col-xl col-lg col-md col-sm-12">
-                              <div class="card custom-card intro-mensal-processos" style="height: 80vh">
-                                 <div class="card-header justify-content-between" style="padding: 10px 26px;"> 
-                                    <div class="card-title"> IM LCL - PROCESSOS </div> 
-                                 </div>
-                                 <div class="card-body" style="padding: 0; padding-right: 15px; margin-top: -18px;">
-                                    <div id="IM-LCL" style="min-height: 475px;"></div>
-                                 </div>
-                              </div>
-                           </div>
-
-                           <div class="col-xl col-lg col-md col-sm-12">
-                              <div class="card custom-card" style="height: 80vh">
-                                 <div class="card-header justify-content-between" style="padding: 10px 26px;"> 
-                                    <div class="card-title"> IM TEUS </div> 
-                                 </div>
-                                 <div class="card-body" style="padding: 0; padding-right: 15px; margin-top: -18px;">
-                                    <div id="IM-FCL" style="min-height: 475px;"></div>
-                                 </div>
-                              </div>
-                           </div>
-            
-                           <div class="col-xl col-lg col-md col-sm-12">
-                              <div class="card custom-card" style="height: 80vh">
-                                 <div class="card-header justify-content-between" style="padding: 10px 26px;"> 
-                                    <div class="card-title"> IA NORMAL - PROCESSOS </div> 
-                                 </div>
-                                 <div class="card-body" style="padding: 0; padding-right: 15px; margin-top: -18px;">
-                                    <div id="IA-NORMAL" style="min-height: 475px;"></div>
-                                 </div>
-                              </div>
-                           </div>
-            
-                           <!-- <div class="col-xl col-lg col-md col-sm-12">
-                              <div class="card custom-card" style="height: 80vh">
-                                 <div class="card-header justify-content-between" style="padding: 10px 26px;"> 
-                                    <div class="card-title"> IA COURIER - PROCESSOS </div> 
-                                 </div>
-                                 <div class="card-body" style="padding: 0; padding-right: 15px; margin-top: -18px;">
-                                    <div id="IA-COURIER" style="min-height: 475px;"></div>
-                                 </div>
-                              </div>
-                           </div> -->
-
-                        </div>
+             <!-- Header -->
+             <div class="row mb-2">
+               <div class="col-12 text-center">
+                  
+                  <h2 class="dashboard-title mt-2">Dashboard Semanal - Analytics Comercial</h2>
+               </div>
+            </div>
+             <!-- NOVO LAYOUT COMPACTO PARA TV -->
+             <div class="row mb-4" id="analytics-ranking-tv">
+               <div class="col-12">
+                  <div class="d-flex flex-row flex-wrap justify-content-center gap-4">
+                     <!-- Modalidades serão preenchidas via JS -->
+                     <div id="analytics-ranking-modalidades" class="d-flex flex-row flex-wrap gap-4 w-100 justify-content-center"></div>
+                  </div>
+               </div>
+            </div>
+            <!-- Rankings Semanais -->
+            <div class="row mb-2">
+               <div class="col-lg-4 col-12 mb-2">
+                  <div class="card card-ranking h-100">
+                     <div class="card-header bg-white border-0 pb-1">
+                        <h6 class="mb-0" style="color:var(--main-red); font-size:1rem;">Ranking Faturamento (%)</h6>
+                     </div>
+                     <div class="card-body pt-2">
+                        <!-- Barras individuais com foto, nome e percentual -->
+                        <div id="ranking-faturamento-barras"></div>
                      </div>
                   </div>
-               <!-- Fim Grafico Mensal -->
+               </div>
+               <div class="col-lg-4 col-12 mb-2">
+                  <div class="card card-ranking h-100">
+                     <div class="card-header bg-white border-0 pb-1">
+                        <h6 class="mb-0" style="color:var(--main-red); font-size:1rem;">Ranking Processos (%)</h6>
+                     </div>
+                     <div class="card-body pt-2">
+                        <!-- Barras individuais com foto, nome e percentual -->
+                        <div id="ranking-processos-barras" class="mt-2"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-12 mb-2">
+                  <div class="card card-ranking h-100">
+                     <div class="card-header bg-white border-0 pb-1">
+                        <h6 class="mb-0" style="color:var(--main-red); font-size:1rem;">Ranking TEUs (%)</h6>
+                     </div>
+                     <div class="card-body pt-2">
+                        <!-- Barras individuais com foto, nome e percentual -->
+                        <div id="ranking-teus-barras"></div>
+                     </div>
+                  </div>
+               </div>
             </div>
+        
+         
       
          </div>
+
+         <!-- EMPRESA SP -->
+      
+      
+      </div>
    </div>
    <!-- Dashboard -->
 
-   <!-- Footer Start -->
+   <!-- Espaçamento extra para o footer não sobrepor os cards -->
+   <div style="height: 48px;"></div>
+
+  <!-- Footer Start -->
    <footer class="footer mt-auto py-3 bg-white text-center">
       <div class="container">
-         <span class="text-muted"> Copyright © <span id="year"><!-- Ano Atual --></span>
+         <span class="text-muted"> Copyright 
+            <span id="year"><!-- Ano Atual --></span>
             <a href="http://conlinebr.com.br" target="_blank" class="text-dark fw-semibold">Conline</a>.
             <span class="bi bi-heart-fill text-danger"></span>
             Todos os direitos reservado
          </span>
       </div>
    </footer>
-   <!-- Footer End -->
+   <!-- Footer End
 
    <div id="responsive-overlay"></div>
 
    <!-- Neste main tem a função THE FETCH que consulta no banco de dados -->
-   <script src="../../../assets/js/fetchAPI.js"></script>
-   <script src="../../../assets/js/socket.io.min.js"></script>
-   <script src="../../../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-   <script src="../../../assets/libs/apexCharts/apexCharts.js"></script>
-
-   <script src="../../../ANALYTICS/assets/js/process-metrics-listener.js"></script>
+   <script src="../assets/js/fetchAPI.js"></script>
+   <script src="../assets/js/socket.io.min.js"></script>
+   <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../assets/libs/apexCharts/apexCharts.js"></script>
 
    <!-- Verifica Se tem acesso ao módulo -->
+   <script src="assets/js/process-metrics-listener.js"></script>
    <script src="assets/js/script.js"></script>
+   <script src="assets/js/analytics-ranking-mock.js"></script>
+   
 </body>
 </html>

@@ -18,6 +18,7 @@ const listApi = require('./server/routes/api');
 // Configuração do Socket.IO
 const io = socketIO(server);
 WebSocket.Init(io)
+WebSocket.InitNewProcessMetrics(io);
 
 // Serve arquivos estáticos da pasta 'public'
 app.use(express.static(path.join(__dirname, './public')));

@@ -2,11 +2,11 @@ const months = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov
 
 async function checkCompany(hash) {
    const getCompanieId = await makeRequest('/api/users/listDataUser', 'POST', { hash: hash }); // Dados de recebimento do ano atual
-   const companie_id_headcargo = 7 /* ADM */
+   // const companie_id_headcargo = 7 /* ADM */
 
-   if (getCompanieId[0].companie_id_headcargo !== companie_id_headcargo) {
-      window.location.href = `/app/erro/acesso-nao-autorizado`;
-   };
+   // if (getCompanieId[0].companie_id_headcargo !== companie_id_headcargo) {
+   //    window.location.href = `/app/erro/acesso-nao-autorizado`;
+   // };
 };
 
 // Soma os resultados do meses que localizar no sistema
@@ -915,29 +915,30 @@ document.addEventListener("DOMContentLoaded", async () => {
    const dataLocal = JSON.parse(getLocalStorage);
    await checkCompany(dataLocal.hash_code); // Verifica se o usuario esta na pagina referente a filial que ele tem acesso
 
-   const listAllProcesses = await makeRequest('/api/importation/listAllProcesses', 'POST', { hash: dataLocal.hash_code }); // Lista os recebimentos do ano atual
+   // const listAllProcesses = await makeRequest('/api/importation/listAllProcesses', 'POST', { hash: dataLocal.hash_code }); // Lista os recebimentos do ano atual
    
-   const listGoalActualYear = await makeRequest('/api/importation/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
-   graphicMonthForMonthITJ(listAllProcesses, listGoalActualYear)
-   graphicMonthForMonthSP(listAllProcesses, listGoalActualYear)
+   // const listGoalActualYear = await makeRequest('/api/importation/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
+   // graphicMonthForMonthITJ(listAllProcesses, listGoalActualYear)
+   // graphicMonthForMonthSP(listAllProcesses, listGoalActualYear)
 
    document.querySelector('#loader2').classList.add('d-none');
 });
 
+
+
+// socket.on('newProcess', async function (msg) {
+//    const getLocalStorage = localStorage.getItem('hash');
+//    const dataLocal = JSON.parse(getLocalStorage);
+//    await checkCompany(dataLocal.hash_code); // Verifica se o usuario esta na pagina referente a filial que ele tem acesso
+
+//    const listAllProcesses = await makeRequest('/api/importation/listAllProcesses', 'POST', { hash: dataLocal.hash_code }); // Lista os recebimentos do ano atual
+//    const listGoalActualYear = await makeRequest('/api/importation/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
+//    graphicMonthForMonthITJ(listAllProcesses, listGoalActualYear)
+//    graphicMonthForMonthSP(listAllProcesses, listGoalActualYear)
+// })
+
 // Socket IO para ficar atualizando as informações na tela
 const socket = io();
-
-socket.on('newProcess', async function (msg) {
-   const getLocalStorage = localStorage.getItem('hash');
-   const dataLocal = JSON.parse(getLocalStorage);
-   await checkCompany(dataLocal.hash_code); // Verifica se o usuario esta na pagina referente a filial que ele tem acesso
-
-   const listAllProcesses = await makeRequest('/api/importation/listAllProcesses', 'POST', { hash: dataLocal.hash_code }); // Lista os recebimentos do ano atual
-   const listGoalActualYear = await makeRequest('/api/importation/listGoalActualYear', 'POST', { hash: dataLocal.hash_code}); // Lista as metas do ano atual
-   graphicMonthForMonthITJ(listAllProcesses, listGoalActualYear)
-   graphicMonthForMonthSP(listAllProcesses, listGoalActualYear)
-})
-
 // Importa e inicializa o listener de métricas de processo
 // Certifique-se de que o arquivo process-metrics-listener.js está incluído no HTML antes deste script
 if (typeof initProcessMetricsListener === 'function') {

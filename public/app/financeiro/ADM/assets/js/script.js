@@ -321,3 +321,9 @@ socket.on('newProcess', async function (msg) {
 
    graphicMonthForMonth(receiptActualYear, listGoalActualYear)
 })
+
+// Importa e inicializa o listener de métricas de processo
+// Certifique-se de que o arquivo process-metrics-listener.js está incluído no HTML antes deste script
+if (typeof initProcessMetricsListener === 'function') {
+  initProcessMetricsListener(socket);
+}
