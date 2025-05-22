@@ -57,7 +57,7 @@ function launchFireworks() {
     });
   }
   function explode(x, y, color) {
-    const count = 12 + Math.floor(Math.random() * 7); // 12-18 partículas
+    const count = 12 + Math.floor(Math.random() * 12); // 12-18 partículas
     for (let i = 0; i < count; i++) {
       const angle = (Math.PI * 2 * i) / count;
       const speed = 2.7 + Math.random() * 3.2;
@@ -112,10 +112,18 @@ function launchFireworks() {
       if (p.alpha < 0.1) return; // Não desenha partículas invisíveis
       ctx.save();
       ctx.globalAlpha = p.alpha;
+      // Blur leve só nas partículas jovens
+      if (p.age < 3) {
+        ctx.shadowBlur = 3;
+        ctx.shadowColor = p.color;
+      } else {
+        ctx.shadowBlur = 0;
+      }
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fillStyle = p.color;
       ctx.fill();
+      ctx.shadowBlur = 0; // Garante que não vaze para outras partículas
       ctx.restore();
       p.x += p.vx;
       p.y += p.vy;
@@ -280,7 +288,7 @@ function showProcessCardSequential(processo) {
       Object.entries(processo.Responsaveis).forEach(([papel, resp]) => {
         if (papel.toUpperCase() === papelRef) {
           outrosHtml += `
-            <div class="text-center mx-1" style="display:inline-block;opacity:0.6;">
+            <div class="text-center mx-1" style="display:inline-block;">
               <span class="avatar avatar-sm border border-light mb-1" style="width:32px;height:32px;overflow:hidden;display:inline-block;">
                 <img src="${resp.foto}" alt="${papel}" style="width:100%;height:100%;object-fit:cover;" onerror="this.onerror=null;this.src='${IMG_PADRAO}';">
               </span>
@@ -341,13 +349,13 @@ function showProcessCardSequential(processo) {
       }
       .badge-origem-destino i { color: #fff !important; }
       @keyframes card-entra {
-        0% { transform: translate(-50%, 80vh); opacity: 0.7; }
-        80% { transform: translate(-50%, -50%); opacity: 1; }
-        100% { transform: translate(-50%, -50%); opacity: 1; }
+        0% { transform: translate(-50%, 80vh) scale(0.95); opacity: 0.7; }
+        80% { transform: translate(-50%, -52%) scale(1.03); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
       }
       @keyframes foguete-sai {
         0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        100% { opacity: 0; transform: translate(-50%, -120vh) scale(1.2); }
+        100% { opacity: 0; transform: translate(-50%, -120vh) scale(1.1); }
       }
     </style>
   `;
@@ -362,7 +370,7 @@ function showProcessCardSequential(processo) {
   function removeCardWithRocket() {
     // Bloqueia interações durante a animação de saída
     listContainer.style.pointerEvents = 'none';
-    card.style.animation = 'foguete-sai 1.2s forwards';
+    card.style.animation = 'foguete-sai 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards';
     setTimeout(() => {
       card.remove();
       isShowingCard = false;
@@ -373,7 +381,7 @@ function showProcessCardSequential(processo) {
         setTimeout(() => { backdrop.style.display = 'none'; }, 300);
       }
       showNextProcessCard();
-    }, 1200);
+    }, 1500);
   }
 
   // Remove automaticamente após 7 segundos
