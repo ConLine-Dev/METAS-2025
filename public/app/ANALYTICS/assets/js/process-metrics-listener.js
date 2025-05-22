@@ -22,16 +22,17 @@ function launchFireworks() {
   canvas.style.position = 'fixed';
   canvas.style.top = 0;
   canvas.style.left = 0;
+  // Reduz a resolução do canvas, mas mantém o tamanho visual
+  canvas.width = Math.floor(window.innerWidth / 1.5);
+  canvas.height = Math.floor(window.innerHeight / 1.5);
   canvas.style.width = '100vw';
   canvas.style.height = '100vh';
   canvas.style.pointerEvents = 'none';
-  canvas.style.zIndex = 10000; // Fica entre o backdrop e o card
+  canvas.style.zIndex = 10000;
   document.body.appendChild(canvas);
   const ctx = canvas.getContext('2d');
-  let W = window.innerWidth;
-  let H = window.innerHeight;
-  canvas.width = W;
-  canvas.height = H;
+  let W = canvas.width;
+  let H = canvas.height;
 
   // Foguetes e partículas
   let rockets = [];
@@ -41,11 +42,9 @@ function launchFireworks() {
     return colors[Math.floor(Math.random() * colors.length)];
   }
   function createRocket() {
-    // Distribuição mais uniforme: divide a tela em 5 faixas e sorteia uma faixa
     const faixa = Math.floor(Math.random() * 5);
     const faixaLargura = W / 5;
     const x = Math.random() * (faixaLargura * 0.8) + faixa * faixaLargura + faixaLargura * 0.1;
-    // Explode entre 5% e 30% da altura da tela (do topo até um pouco abaixo do centro)
     const targetY = Math.random() * (H * 0.25) + H * 0.05;
     rockets.push({
       x,
@@ -58,11 +57,10 @@ function launchFireworks() {
     });
   }
   function explode(x, y, color) {
-    const count = 45 + Math.floor(Math.random() * 20); // Menos partículas, mas ainda vistoso
+    const count = 12 + Math.floor(Math.random() * 7); // 12-18 partículas
     for (let i = 0; i < count; i++) {
       const angle = (Math.PI * 2 * i) / count;
       const speed = 2.7 + Math.random() * 3.2;
-      // Variação de cor e tamanho
       const hueShift = Math.floor(Math.random() * 30 - 15);
       const colorVar = tinycolor(color).spin(hueShift).toHexString();
       particles.push({
@@ -86,8 +84,6 @@ function launchFireworks() {
         ctx.beginPath();
         ctx.arc(r.x, r.y, 3.5, 0, Math.PI * 2);
         ctx.fillStyle = r.color;
-        ctx.shadowColor = r.color;
-        ctx.shadowBlur = 8; // Otimizado para menor custo
         ctx.fill();
         ctx.restore();
         // Traço do foguete
@@ -103,38 +99,28 @@ function launchFireworks() {
         // Movimento
         r.x += r.vx;
         r.y += r.vy;
-        r.vy += 0.12; // gravidade
-        // Garante que sempre explode ao atingir ou passar do targetY
+        r.vy += 0.12;
         if (r.y <= r.targetY || r.vy > 0) {
           r.exploded = true;
           explode(r.x, r.y, r.color);
         }
       }
     });
-    // Remove foguetes explodidos
     rockets = rockets.filter(r => !r.exploded);
     // Partículas
     particles.forEach((p, idx) => {
+      if (p.alpha < 0.1) return; // Não desenha partículas invisíveis
       ctx.save();
-      // Brilho extra nos primeiros frames
-      if (p.age < 6) {
-        ctx.shadowBlur = 12; // Otimizado para menor custo
-        ctx.globalAlpha = p.alpha * 1.2;
-      } else {
-        ctx.shadowBlur = 8; // Otimizado para menor custo
-        ctx.globalAlpha = p.alpha;
-      }
+      ctx.globalAlpha = p.alpha;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fillStyle = p.color;
-      ctx.shadowColor = p.color;
       ctx.fill();
       ctx.restore();
       p.x += p.vx;
       p.y += p.vy;
       p.vx *= 0.98;
       p.vy *= 0.98;
-      // Fade-out mais natural
       if (p.age < 6) {
         p.alpha -= 0.012;
       } else {
@@ -143,9 +129,7 @@ function launchFireworks() {
       p.age++;
     });
     particles = particles.filter(p => p.alpha > 0);
-    // Limite de foguetes ativos simultâneos
     const maxRockets = 5;
-    // Dispara foguetes continuamente enquanto houver card ou fila, mas respeita o limite
     if ((isShowingCard || processQueue.length > 0) && rockets.length < maxRockets && Math.random() < 0.22) {
       createRocket();
     }
@@ -154,7 +138,6 @@ function launchFireworks() {
     } else {
       setTimeout(() => {
         canvas.remove();
-        // Limpa arrays para evitar leaks
         rockets = [];
         particles = [];
       }, 1000);
