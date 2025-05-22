@@ -14,7 +14,9 @@ const SOUND_PALMAS = '/app/ANALYTICS/assets/sound/applause.mp3';
 
 // Função para criar fogos de artifício animados (CSS/JS leve)
 function launchFireworks() {
-  if (document.getElementById('fireworks-canvas')) return;
+  // Garante que só exista um canvas de fogos
+  const oldCanvas = document.getElementById('fireworks-canvas');
+  if (oldCanvas) oldCanvas.remove();
   const canvas = document.createElement('canvas');
   canvas.id = 'fireworks-canvas';
   canvas.style.position = 'fixed';
@@ -85,7 +87,7 @@ function launchFireworks() {
         ctx.arc(r.x, r.y, 3.5, 0, Math.PI * 2);
         ctx.fillStyle = r.color;
         ctx.shadowColor = r.color;
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 8; // Otimizado para menor custo
         ctx.fill();
         ctx.restore();
         // Traço do foguete
@@ -116,10 +118,10 @@ function launchFireworks() {
       ctx.save();
       // Brilho extra nos primeiros frames
       if (p.age < 6) {
-        ctx.shadowBlur = 32;
+        ctx.shadowBlur = 12; // Otimizado para menor custo
         ctx.globalAlpha = p.alpha * 1.2;
       } else {
-        ctx.shadowBlur = 16;
+        ctx.shadowBlur = 8; // Otimizado para menor custo
         ctx.globalAlpha = p.alpha;
       }
       ctx.beginPath();
@@ -152,6 +154,9 @@ function launchFireworks() {
     } else {
       setTimeout(() => {
         canvas.remove();
+        // Limpa arrays para evitar leaks
+        rockets = [];
+        particles = [];
       }, 1000);
     }
   }
@@ -258,6 +263,7 @@ function showProcessCardSequential(processo) {
   card.style.minHeight = '380px';
   card.style.zIndex = 10001;
   card.style.pointerEvents = 'auto';
+  card.style.willChange = 'transform, opacity';
 
   // Separar os papéis principais dos demais, já na ordem desejada
   const principais = ['COMERCIAL', 'INSIDE SALES'];
