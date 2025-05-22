@@ -1,5 +1,8 @@
 // analytics-ranking-mock.js
 
+// Lista de IDs de colaboradores a serem ignorados nos rankings
+const idsIgnorados = [48908, 48902, 48901];
+
 // Função utilitária para capitalizar nomes
 function capitalizarNome(nome) {
   if (!nome) return '';
@@ -41,7 +44,7 @@ function agrupaRankingMensal(listAllProcesses) {
 }
 
 // Função para renderizar os cards Top 3 por modalidade em linha única (layout TV)
-function renderTop3PorModalidadeTV(rankingPorModalidade, listAllProcesses) {
+function renderTop3PorModalidadeTV(rankingPorModalidade, listAllProcessesFiltrado, listAllProcessesOriginal) {
   const container = document.getElementById('analytics-ranking-modalidades');
   if (!container) return;
   container.innerHTML = '';
@@ -82,7 +85,7 @@ function renderTop3PorModalidadeTV(rankingPorModalidade, listAllProcesses) {
       <div id="analytics-ranking-pie" style="width: 100%; min-height: 220px;"></div>
     </div>
   `;
-  setTimeout(() => renderPieChart(listAllProcesses), 100); // Garante que o DOM existe
+  setTimeout(() => renderPieChart(listAllProcessesOriginal), 100); // Usa a lista original
 }
 
 function renderPieChart(listAllProcesses) {
@@ -296,22 +299,26 @@ function renderRankingFaturamentoBarras(rankingFaturamentoVendedor) {
 // Função centralizada para atualizar todos os rankings da página analytics
 async function updateAnalyticsRanking() {
   const listAllProcesses = await makeRequest('/api/analytics/getProcess', 'POST');
+  // Filtra os processos para desconsiderar os IDs ignorados
+  const listAllProcessesFiltrado = listAllProcesses.filter(
+    item => !idsIgnorados.includes(item.Id_Comercial)
+  );
 
   // Top 3 por modalidade
-  const rankingPorModalidade = agrupaTop3PorModalidade(listAllProcesses);
-  renderTop3PorModalidadeTV(rankingPorModalidade, listAllProcesses);
+  const rankingPorModalidade = agrupaTop3PorModalidade(listAllProcessesFiltrado);
+  renderTop3PorModalidadeTV(rankingPorModalidade, listAllProcessesFiltrado, listAllProcesses);
 
   // Ranking mensal geral
-  const rankingMensalVendedor = agrupaRankingMensal(listAllProcesses);
+  const rankingMensalVendedor = agrupaRankingMensal(listAllProcessesFiltrado);
   renderBarChartMensal(rankingMensalVendedor);
   renderRankingProcessosBarras(rankingMensalVendedor);
 
   // Ranking TEUs
-  const rankingTeusVendedor = agrupaRankingTeus(listAllProcesses);
+  const rankingTeusVendedor = agrupaRankingTeus(listAllProcessesFiltrado);
   renderRankingTeusBarras(rankingTeusVendedor);
 
   // Ranking Faturamento
-  const rankingFaturamentoVendedor = agrupaRankingFaturamento(listAllProcesses);
+  const rankingFaturamentoVendedor = agrupaRankingFaturamento(listAllProcessesFiltrado);
   renderRankingFaturamentoBarras(rankingFaturamentoVendedor);
 
   // Outros renders (se necessário)

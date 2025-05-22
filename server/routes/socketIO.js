@@ -128,8 +128,6 @@ cad_Origem_Destino Dto ON Dto.IdOrigem_Destino = Lvm.IdDestino
 WHERE 
 Lhs.IdLogistica_House > ${lastId}
 AND Lhs.Numero_Processo NOT LIKE '%test%'
-AND Lmr.Modalidade_Processo IN (1 /*Aereo*/, 2 /*Maritimo*/)
-AND Lmr.Tipo_Operacao IN (2 /*Importacao*/, 1 /*Exportacao*/)
 AND Lhs.Numero_Processo NOT LIKE '%demu%'
 AND Lhs.Situacao_Agenciamento NOT IN (7)
     `);
