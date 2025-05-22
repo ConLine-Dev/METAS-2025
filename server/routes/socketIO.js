@@ -33,12 +33,13 @@ const WebSocket = {
     // console.log('lastIdMetrics', this.lastIdMetrics);
     // setTimeout(async () => {
     //   if(this.lastIdMetrics > 0){
-    //     this.lastIdMetrics = this.lastIdMetrics - 5;
+    //     this.lastIdMetrics = this.lastIdMetrics - 1;
     //     console.log('lastIdMetrics', this.lastIdMetrics);
     //   }
     // }, 1000);
 
     setInterval(async () => {
+      console.log('verificando processos fechados')
       // Busca todos os processos fechados após o lastIdMetrics
 
       const results = await WebSocket.listNewProcesses(this.lastIdMetrics);
@@ -48,6 +49,7 @@ const WebSocket = {
         // Emite todos os novos processos para os clientes
         io.emit('newProcess_metrics', results);
         console.log('enviou', results);
+        console.log('Novo processo encontrado');
       }
     }, 5000); // 30 segundos
 
