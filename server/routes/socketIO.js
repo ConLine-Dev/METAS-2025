@@ -31,12 +31,12 @@ const WebSocket = {
     const newResult = await WebSocket.listLastProcess();
     this.lastIdMetrics = newResult.IdLogistica_House;
     // console.log('lastIdMetrics', this.lastIdMetrics);
-    setTimeout(async () => {
-      if(this.lastIdMetrics > 0){
-        this.lastIdMetrics = this.lastIdMetrics - 1;
-        console.log('lastIdMetrics', this.lastIdMetrics);
-      }
-    }, 1000);
+    // setTimeout(async () => {
+    //   if(this.lastIdMetrics > 0){
+    //     this.lastIdMetrics = this.lastIdMetrics - 1;
+    //     console.log('lastIdMetrics', this.lastIdMetrics);
+    //   }
+    // }, 1000);
 
 
 
