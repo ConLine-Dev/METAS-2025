@@ -41,10 +41,11 @@ const WebSocket = {
 
 
     setInterval(async () => {
-      console.log('verificando processos fechados')
+      
       // Busca todos os processos fechados após o lastIdMetrics
 
       const results = await WebSocket.listNewProcesses(this.lastIdMetrics);
+      console.log('verificando processos fechados', results, this.lastIdMetrics)
       if (results.length > 0) {
         // Atualiza o lastIdMetrics para o maior ID retornado
         this.lastIdMetrics = Math.max(...results.map(r => r.IdLogistica_House));
@@ -61,7 +62,14 @@ const WebSocket = {
   },
 
   listLastProcess: async function() {
-    const result = await executeQuerySQL(`SELECT TOP 1 IdLogistica_House FROM mov_Logistica_House WHERE Situacao_Agenciamento NOT IN (7 /*CANCELADO*/) AND Numero_Processo NOT LIKE '%test%' ORDER BY IdLogistica_House DESC`);
+    const result = await executeQuerySQL(`
+      SELECT TOP 1 
+      IdLogistica_House FROM mov_Logistica_House 
+      WHERE 
+      Situacao_Agenciamento NOT IN (7 /*CANCELADO*/) 
+      AND Numero_Processo NOT LIKE '%test%' 
+      AND Numero_Processo NOT LIKE '%demu%'
+      ORDER BY IdLogistica_House DESC`);
     return result[0];
   },
 
