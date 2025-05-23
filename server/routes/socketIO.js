@@ -30,13 +30,13 @@ const WebSocket = {
     // Busca o último processo ao iniciar
     const newResult = await WebSocket.listLastProcess();
     this.lastIdMetrics = newResult.IdLogistica_House;
-    // console.log('lastIdMetrics', this.lastIdMetrics);
-    // setTimeout(async () => {
-    //   if(this.lastIdMetrics > 0){
-    //     this.lastIdMetrics = this.lastIdMetrics - 1;
-    //     console.log('lastIdMetrics', this.lastIdMetrics);
-    //   }
-    // }, 1000);
+    console.log('lastIdMetrics', this.lastIdMetrics);
+    setTimeout(async () => {
+      if(this.lastIdMetrics > 0){
+        this.lastIdMetrics = this.lastIdMetrics - 1;
+        console.log('lastIdMetrics', this.lastIdMetrics);
+      }
+    }, 1000);
 
 
 
@@ -50,6 +50,7 @@ const WebSocket = {
       if (results && results.length > 0) {
         // Atualiza o lastIdMetrics para o maior ID retornado
         this.lastIdMetrics = Math.max(...results.map(r => r.IdLogistica_House));
+        console.log('lastIdMetrics', this.lastIdMetrics);
         // Emite todos os novos processos para os clientes
         io.emit('newProcess_metrics', results);
         console.log('enviou', results);
@@ -81,7 +82,7 @@ const WebSocket = {
     const result = await executeQuerySQL(`
       SELECT
 Lhs.Numero_Processo,
-
+Lhs.IdLogistica_House,
 CASE Lhs.Situacao_Agenciamento
     WHEN '2' THEN 'Em andamento'
     WHEN '3' THEN 'Liberado faturamento'
@@ -146,6 +147,7 @@ AND Lhs.Situacao_Agenciamento NOT IN (7)
       const numero = item.Numero_Processo;
       if (!processosMap[numero]) {
         processosMap[numero] = {
+          IdLogistica_House: item.IdLogistica_House,
           Numero_Processo: item.Numero_Processo,
           Situacao_Agenciamento: item.Situacao_Agenciamento,
           DataAbertura: item.Data_Abertura_Processo,
