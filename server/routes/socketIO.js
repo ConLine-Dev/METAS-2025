@@ -40,18 +40,16 @@ const WebSocket = {
 
 
 
+
     setInterval(async () => {
       
       // Busca todos os processos fechados após o lastIdMetrics
 
       const results = await WebSocket.listNewProcesses(this.lastIdMetrics);
       console.log('verificando processos fechados', results, this.lastIdMetrics)
-      if (results.length > 0) {
-        // Atualiza o lastIdMetrics para o maior ID retornado, se houver IDs válidos
-        const ids = results.map(r => Number(r.IdLogistica_House)).filter(id => !isNaN(id));
-        if (ids.length > 0) {
-          this.lastIdMetrics = Math.max(...ids);
-        }
+      if (results && results.length > 0) {
+        // Atualiza o lastIdMetrics para o maior ID retornado
+        this.lastIdMetrics = Math.max(...results.map(r => r.IdLogistica_House));
         // Emite todos os novos processos para os clientes
         io.emit('newProcess_metrics', results);
         console.log('enviou', results);
