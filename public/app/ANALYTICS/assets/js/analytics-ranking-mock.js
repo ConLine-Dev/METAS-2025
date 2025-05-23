@@ -1,7 +1,7 @@
 // analytics-ranking-mock.js
 
 // Lista de IDs de colaboradores a serem ignorados nos rankings
-const idsIgnorados = [48908, 48902, 48901];
+const idsIgnorados = [48908, 48902, 48901, 48906];
 
 // Função utilitária para capitalizar nomes
 function capitalizarNome(nome) {
